@@ -1,0 +1,25 @@
+% # vim:set sw=4 ts=4 sts=4 ft=html.epl expandtab:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="<%= url_for('/img/erco.png') %>" rel="shortcut icon" type="image/png" />
+        %= stylesheet 'css/bootstrap.min.css', media => 'screen'
+        %= stylesheet begin
+        body {
+            background-image: url(<%= url_for('/img/erco.png') %>);
+            background-repeat: no-repeat;
+        }
+        #content {
+            background-color: #ffffff;
+        }
+        % end
+    </head>
+    <body>
+        <div class="container" id="content">
+            <h1>Erco: Exabgp Routes Controller</h1>
+            <%= content %>
+        </div>
+    </body>
+</html>

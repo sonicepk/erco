@@ -1,0 +1,293 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Erco API documentation</title><link rel="stylesheet" href="css/bootstrap.min.css"><link rel="shortcut icon" href="../img/mdx-icon.png" type="image/png"><link rel="stylesheet" href="css/font-awesome.min.css"><link rel="stylesheet" href="css/fonts.css"><style>pre code{display:block;padding:.5em;color:#333}
+/* Highlight.js Theme Tomorrow */
+.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}</style><style>body,
+h4,
+h5 {
+  font-family: 'Roboto' sans-serif !important;
+}
+h1,
+h2,
+h3,
+.aglio {
+  font-family: 'Raleway' sans-serif !important;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  display: none;
+}
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a,
+h5:hover a {
+  display: inline;
+}
+code {
+  color: #444;
+  background-color: #ddd;
+  font-family: 'Inconsolata' monospace !important;
+}
+a[data-target] {
+  cursor: pointer;
+}
+h4 {
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.back-to-top {
+  position: fixed;
+  z-index: 1;
+  bottom: 0px;
+  right: 24px;
+  padding: 4px 8px;
+  background-color: #eee;
+  text-decoration: none !important;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel {
+  overflow: hidden;
+}
+.panel-heading code {
+  margin-left: 3px;
+  background-color: rgba(255,255,255,0.7);
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.panel-heading h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+a.list-group-item:hover {
+  background-color: #f8f8f8;
+  border-left: 2px solid #555;
+  padding-left: 15px;
+}
+.indent {
+  display: block;
+  text-indent: 16px;
+}
+.list-group-item {
+  padding-left: 16px;
+}
+.list-group-item .toggle .open {
+  display: block;
+}
+.list-group-item .toggle .closed {
+  display: none;
+}
+.list-group-item.collapsed .toggle .open {
+  display: none;
+}
+.list-group-item.collapsed .toggle .closed {
+  display: block;
+}
+a.list-group-item:hover {
+  background-color: #f5f5f5;
+  border-left-color: #555;
+}
+a.list-group-item {
+  font-size: 13px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+a.list-group-item.heading {
+  font-size: 15px;
+  background-color: #ecf0f1;
+}
+a.list-group-item.heading:hover {
+  background-color: #f5f5f5;
+}
+.list-group-item.collapse {
+  display: none;
+}
+.list-group-item.collapse.in {
+  display: block;
+}
+.list-group-item a span.closed {
+  display: none;
+}
+.list-group-item a span.open {
+  display: block;
+}
+.list-group-item a.collapsed span.closed {
+  display: block;
+}
+.list-group-item a.collapsed span.open {
+  display: none;
+}
+#nav {
+  width: inherit;
+  margin-top: 38px;
+  max-width: 100%;
+  top: 0;
+  bottom: 0;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  overflow-y: auto;
+}
+@media (max-width: 1199px) {
+  #nav {
+    max-width: 212px;
+  }
+}
+</style></head><body><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container-fluid"><div class="row"><div class="col-md-3"><nav id="nav" class="hidden-sm hidden-xs affix nav"><div class="list-group"><a data-toggle="" data-target="#subnet-menu" href="#subnet" class="list-group-item heading collapsed">Subnet</a><div id="subnet-menu"><a href="#subnet-" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">Resource</a><a href="#subnet--get" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span><span class="indent">GET /api/subnet</span></a><a href="#subnet--post" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span><span class="indent">POST /api/subnet</span></a><a href="#subnet--put" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-warning"><i class="fa fa-pencil"></i></span><span class="indent">PUT /api/subnet</span></a><a href="#subnet--delete" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-danger"><i class="fa fa-times"></i></span><span class="indent">DELETE /api/subnet</span></a></div></div><div class="list-group"><a data-toggle="" data-target="#exabgp-menu" href="#exabgp" class="list-group-item heading collapsed">Exabgp</a><div id="exabgp-menu"><a href="#exabgp-" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>GET /api/exabgp/status</a><a href="#exabgp-" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>GET /api/exabgp/command{?action}</a><a href="#exabgp-" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>GET /api/exabgp/commands</a></div></div><div class="list-group"><a data-toggle="" data-target="#communities-menu" href="#communities" class="list-group-item heading collapsed">Communities</a><div id="communities-menu"><a href="#communities-" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>GET /api/communities</a></div></div><div class="list-group"><a data-toggle="" data-target="#next-hops-menu" href="#next-hops" class="list-group-item heading collapsed">Next hops</a><div id="next-hops-menu"><a href="#next-hops-" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>GET /api/next_hops</a></div></div></nav></div><div class="col-md-8"><div><header><div class="page-header"><h1 id="top">Erco API documentation</h1></div></header><div class="description"><p><a href="../..">Back to Erco</a></p>
+</div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="subnet">Subnet&nbsp;<a href="#subnet"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4>Attributes</h4>
+<ul>
+<li><p><strong>id</strong> <code>number</code><br>
+internal id of the subnet. Changes every time Erco is reloaded</p></li>
+<li><p><strong>cidr</strong> <code>string</code><br>
+CIDR notation of the subnet</p></li>
+<li><p><strong>next_hop</strong> <code>string</code><br>
+IP address of the next hop</p></li>
+<li><p><strong>communities</strong> <code>array[string]</code><br>
+Array of communities is announced with</p></li>
+<li><p><strong>created_at</strong> <code>number</code><br>
+UNIX timestamp of the subnet’s creation</p></li>
+<li><p><strong>human_created_at</strong> <code>string</code><br>
+human readable representation of <code>created_at</code></p></li>
+<li><p><strong>modified_at</strong> <code>number</code><br>
+UNIX timestamp of the subnet’s last modification</p></li>
+<li><p><strong>human_modified_at</strong> <code>string</code><br>
+human readable representation of <code>modified_at</code></p></li>
+</ul>
+<h4 id="subnet-">Resources&nbsp;<a href="#subnet-"><i class="fa fa-link"></i></a></h4><section id="subnet--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#subnet--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/api/subnet</code></div></div><div class="panel-body"><p>Get the list of the announced subnets.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#6398b033cded66791b457c2766cb7ea3" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="6398b033cded66791b457c2766cb7ea3" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
+    {
+        "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-number">1</span></span>,
+        "<span class="hljs-attribute">cidr</span>":<span class="hljs-value"><span class="hljs-string">"203.0.113.0/24"</span></span>,
+        "<span class="hljs-attribute">next_hop</span>":<span class="hljs-value"><span class="hljs-string">"192.0.2.42"</span></span>,
+        "<span class="hljs-attribute">communities</span>":
+            <span class="hljs-value">[
+                <span class="hljs-string">"64496:42"</span>
+            ]</span>,
+        "<span class="hljs-attribute">created_at</span>":<span class="hljs-value"><span class="hljs-number">1433497409</span></span>,
+        "<span class="hljs-attribute">human_created_at</span>":<span class="hljs-value"><span class="hljs-string">"Fri, 05 Jun 2015 09:43:29 GMT"</span></span>,
+        "<span class="hljs-attribute">modified_at</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,
+        "<span class="hljs-attribute">human_modified_at</span>":<span class="hljs-value"><span class="hljs-literal">null</span>
+    </span>},{
+        "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-number">2</span></span>,
+        "<span class="hljs-attribute">cidr</span>":<span class="hljs-value"><span class="hljs-string">"198.51.100.42\/32"</span></span>,
+        "<span class="hljs-attribute">next_hop</span>":<span class="hljs-value"><span class="hljs-string">"192.0.2.44"</span></span>,
+        "<span class="hljs-attribute">communities</span>":
+            <span class="hljs-value">[
+                <span class="hljs-string">"64496:42"</span>,
+                <span class="hljs-string">"64511:1337"</span>
+            ]</span>,
+        "<span class="hljs-attribute">created_at</span>":<span class="hljs-value"><span class="hljs-number">1433497409</span></span>,
+        "<span class="hljs-attribute">human_created_at</span>":<span class="hljs-value"><span class="hljs-string">"Fri, 05 Jun 2015 09:43:29 GMT"</span></span>,
+        "<span class="hljs-attribute">modified_at</span>":<span class="hljs-value"><span class="hljs-number">1435832156</span></span>,
+        "<span class="hljs-attribute">human_modified_at</span>":<span class="hljs-value"><span class="hljs-string">"Thu, 02 Jul 2015 10:15:55 GMT"</span>
+    </span>}
+]
+</code></pre></li></ul></section><section id="subnet--post" class="panel panel-success"><div class="panel-heading"><div style="float:left"><a href="#subnet--post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/api/subnet</code></div></div><div class="panel-body"><p>Announce a new subnet.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#fb2b9af159a71592b91e7693d38f51b3" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="fb2b9af159a71592b91e7693d38f51b3" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/x-www-form-urlencoded</span><br></code></pre><h5>Body</h5><pre><code>cidr=<span class="hljs-number">198.51.100.43</span>/32&amp;next_hop=<span class="hljs-number">192.0.2.42</span>&amp;communities[]=<span class="hljs-number">64496:42</span>&amp;communities[]=<span class="hljs-number">64511:1337</span>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#518a6ecd99c27d0ec6ba60c40bd0b51d" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="518a6ecd99c27d0ec6ba60c40bd0b51d" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">msg</span>":<span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-number">3</span></span>,
+        "<span class="hljs-attribute">cidr</span>":<span class="hljs-value"><span class="hljs-string">"198.51.100.43\/32"</span>
+        <span class="hljs-string">"next_hop"</span>:<span class="hljs-string">"192.0.2.42"</span></span>,
+        "<span class="hljs-attribute">communities</span>":
+            <span class="hljs-value">[
+                <span class="hljs-string">"64496:42"</span>,
+                <span class="hljs-string">"64511:1337"</span>
+            ]</span>,
+        "<span class="hljs-attribute">created_at</span>":<span class="hljs-value"><span class="hljs-number">1433497409</span></span>,
+        "<span class="hljs-attribute">human_created_at</span>":<span class="hljs-value"><span class="hljs-string">"Fri, 05 Jun 2015 09:43:29 GMT"</span></span>,
+        "<span class="hljs-attribute">modified_at</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,
+        "<span class="hljs-attribute">human_modified_at</span>":<span class="hljs-value"><span class="hljs-literal">null</span>
+    </span>}
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#cf3776e2894085f8c661dbaf8ceded00" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="cf3776e2894085f8c661dbaf8ceded00" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"The reason why it failed"</span>
+</span>}
+</code></pre></li></ul></section><section id="subnet--put" class="panel panel-warning"><div class="panel-heading"><div style="float:left"><a href="#subnet--put" class="btn btn-xs btn-warning">PUT</a></div><div style="overflow:hidden"><code>/api/subnet</code></div></div><div class="panel-body"><p>Modified an announced subnet.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#fc82636e6190eae78eace18fa36c8b70" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="fc82636e6190eae78eace18fa36c8b70" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/x-www-form-urlencoded</span><br></code></pre><h5>Body</h5><pre><code>id=3cidr=<span class="hljs-number">198.51.100.1</span>/32&amp;next_hop=<span class="hljs-number">192.0.2.42</span>&amp;communities[]=<span class="hljs-number">64496:42</span>&amp;communities[]=<span class="hljs-number">64511:123</span>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#81ab13706b603a4e72ff32a7c19d2106" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="81ab13706b603a4e72ff32a7c19d2106" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">msg</span>":<span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-number">3</span></span>,
+        "<span class="hljs-attribute">cidr</span>":<span class="hljs-value"><span class="hljs-string">"198.51.100.1\/32"</span>
+        <span class="hljs-string">"next_hop"</span>:<span class="hljs-string">"192.0.2.42"</span></span>,
+        "<span class="hljs-attribute">communities</span>":
+            <span class="hljs-value">[
+                <span class="hljs-string">"64496:42"</span>,
+                <span class="hljs-string">"64511:123"</span>
+            ]</span>,
+        "<span class="hljs-attribute">created_at</span>":<span class="hljs-value"><span class="hljs-number">1433497409</span></span>,
+        "<span class="hljs-attribute">human_created_at</span>":<span class="hljs-value"><span class="hljs-string">"Fri, 05 Jun 2015 09:43:29 GMT"</span></span>,
+        "<span class="hljs-attribute">modified_at</span>":<span class="hljs-value"><span class="hljs-number">1435832156</span></span>,
+        "<span class="hljs-attribute">human_modified_at</span>":<span class="hljs-value"><span class="hljs-string">"Thu, 02 Jul 2015 10:15:55 GMT"</span>
+    </span>}
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#e6624fa8e1094aeba1703bb300cb6bca" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e6624fa8e1094aeba1703bb300cb6bca" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"The reason why it failed"</span>
+</span>}
+</code></pre></li></ul></section><section id="subnet--delete" class="panel panel-danger"><div class="panel-heading"><div style="float:left"><a href="#subnet--delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/api/subnet</code></div></div><div class="panel-body"><p>Stop to announce a subnet.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#858c9c0f3d7521761ac4b87a57ce4de5" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="858c9c0f3d7521761ac4b87a57ce4de5" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/x-www-form-urlencoded</span><br></code></pre><h5>Body</h5><pre><code><span class="hljs-property">id</span>=<span class="hljs-number">3</span>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b9c3eb8e0a40a539f74fb7979348b04a" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="b9c3eb8e0a40a539f74fb7979348b04a" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"Network successfully deleted."</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#9c337bc640563ea0fffa00dd4dc90cf6" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="9c337bc640563ea0fffa00dd4dc90cf6" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"The reason why it failed"</span>
+</span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="exabgp">Exabgp&nbsp;<a href="#exabgp"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="exabgp-">Resources&nbsp;<a href="#exabgp-"><i class="fa fa-link"></i></a></h4><section id="exabgp--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#exabgp--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/api/exabgp/status</code></div></div><div class="panel-body"><p>Get the status of Exabgp (running, not running).</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#43720ddbc7460c280d54c88365169ded" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="43720ddbc7460c280d54c88365169ded" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">running</span>":<span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">file_missing</span>":<span class="hljs-value"><span class="hljs-literal">false</span>
+</span>}
+</code></pre></li></ul></section><h4 id="exabgp-">Resources&nbsp;<a href="#exabgp-"><i class="fa fa-link"></i></a></h4><section id="exabgp--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#exabgp--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/api/exabgp/command{?action}</code></div></div><div class="panel-body"><p>Execute a command on Exabgp.</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>action</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>reload</span></span><p>The available commands depends of your configuration</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#11a0d9fe8cd97be9f8de8483e61f3587" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="11a0d9fe8cd97be9f8de8483e61f3587" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"Exabgp has been successfully reloaded."</span>
+</span>}
+
+{
+    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"The reason why it failed"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="exabgp-">Resources&nbsp;<a href="#exabgp-"><i class="fa fa-link"></i></a></h4><section id="exabgp--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#exabgp--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/api/exabgp/commands</code></div></div><div class="panel-body"><p>Get the list of available commands.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#26e65de7148977419a59722a76fd3605" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="26e65de7148977419a59722a76fd3605" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
+    <span class="hljs-string">"reload"</span>
+]
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="communities">Communities&nbsp;<a href="#communities"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="communities-">Resources&nbsp;<a href="#communities-"><i class="fa fa-link"></i></a></h4><section id="communities--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#communities--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/api/communities</code></div></div><div class="panel-body"><p>Get the list of available communities.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#8e96de605df69aff34d013a8140ee509" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="8e96de605df69aff34d013a8140ee509" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">64496:42</span>":<span class="hljs-value"><span class="hljs-string">"Foo"</span></span>,
+    "<span class="hljs-attribute">64511:1337</span>":<span class="hljs-value"><span class="hljs-string">"Bar"</span></span>,
+    "<span class="hljs-attribute">64511:123</span>":<span class="hljs-value"><span class="hljs-string">"Baz"</span></span>,
+}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="next-hops">Next hops&nbsp;<a href="#next-hops"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="next-hops-">Resources&nbsp;<a href="#next-hops-"><i class="fa fa-link"></i></a></h4><section id="next-hops--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#next-hops--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/api/next_hops</code></div></div><div class="panel-body"><p>Get the list of available next hops.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e51ea822949782a592897013c56e547a" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e51ea822949782a592897013c56e547a" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">192.0.2.42</span>":<span class="hljs-value"><span class="hljs-string">"Alice"</span></span>,
+    "<span class="hljs-attribute">192.0.2.44</span>":<span class="hljs-value"><span class="hljs-string">"Bob"</span>
+</span>}
+</code></pre></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 06 Jul 2015</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
+
+</div></body><script src="js/jquery-1.11.0.min.js"></script><script src="js/bootstrap.min.js"></script><script>(function() {
+  if (location.protocol === 'file:') {
+    document.getElementById('localFile').style.display = 'block';
+  }
+
+}).call(this);
+</script><script>(function() {
+  $('table').addClass('table');
+
+}).call(this);
+</script></html>

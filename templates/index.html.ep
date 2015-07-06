@@ -1,0 +1,150 @@
+% # vim:set sw=4 ts=4 sts=4 ft=html.epl expandtab:
+% title 'Erco - Exabgp Routes Controller';
+<div id="exabgp-bloc" class="row well">
+    <div class="col-sm-3">
+        <h4 id="exabgp-h4"><span class="label label-info" id="exabgp-status"><%= l('Getting Exabgp status') %></span></h4>
+        <h4><a href="#" id="reload-exabgp" class="label label-default"><%= l('Reload Exabgp') %></a></h4>
+        <h4><a href="<%= url_for('api') %>" class="label label-info">API</a></h4>
+        <h4><a href="#" id="clear-command-output" class="label label-warning"><%= l('Clear command output') %></a></h4>
+    </div>
+    <div class="col-sm-9">
+        <form class="form-horizontal">
+            <div class="form-group">
+                    <select id="command" name="command" class="form-control">
+                    % for my $key (sort { $a cmp $b } @{$self->config('commands')}) {
+                        <option value="<%= $key %>"><%= $key %></option>
+                    % }
+                    </select>
+            </div>
+            <a href="#" id="launch-command" class="pull-right btn btn-default"><%= l('Launch command') %></a>
+        </form>
+        <div>
+            <pre><code id="command-result">
+            </code></pre>
+        </div>
+    </div>
+</div>
+<div id="alerts"></div>
+<h3><%= l('Add a network to blacklist') %></h3>
+
+<!-- Network addition form -->
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="cidr" class="col-sm-3 control-label"><%= l('IP or network in CIDR notation') %></label>
+        <div class="col-sm-9">
+            <input class="form-control" id="cidr" type="text" name="cidr" placeholder="<%= l('IP or network in CIDR notation') %>" required="required">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="add-next-hop" class="col-sm-3 control-label"><%= l('Next hop') %></label>
+        <div class="col-sm-9">
+            <select id="add-next-hop" name="next-hop" class="form-control">
+            % for my $key (sort { $a cmp $b } keys %{$self->config('next_hops')}) {
+                <option value="<%= $key %>"><%= sprintf('%s (%s)', $key, $self->config('next_hops')->{$key}) %></option>
+            % }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="add-communities" class="col-sm-3 control-label"><%= l('Communities') %></label>
+        <div class="col-sm-9">
+            <select multiple id="add-communities" name="communities" class="form-control" required="required">
+            % for my $key (sort { $a cmp $b } keys %{$self->config('communities')}) {
+                <option value="<%= $key %>"><%= sprintf('%s (%s)', $key, $self->config('communities')->{$key}) %></option>
+            % }
+            </select>
+        </div>
+    </div>
+    <div class="text-right">
+        <a href="#" class="btn btn-primary" id="submit-btn"><%= l('Add') %></a>
+    </div>
+</form>
+<!-- End of network addition form -->
+
+<h2><%= l('Announced networks') %> <a href="#" id="reload-btn" class="small"><span class="glyphicon glyphicon-refresh"></span></a></h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">#</th>
+            <th><%= l('Network') %></th>
+            <th><%= l('Next hop') %></th>
+            <th><%= l('Communities') %></th>
+            <th><%= l('Created at') %></th>
+            <th><%= l('Modified at') %></th>
+            <th class="text-center"><%= l('Actions') %></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<!-- Network modification modal -->
+<div class="modal fade" id="modModal" tabindex="-1" role="dialog" aria-labelledby="modModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modModalLabel"><%= l('Modify network') %></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="mod-cidr" class="col-sm-3 control-label"><%= l('IP or network in CIDR notation') %></label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="mod-cidr" type="text" name="cidr" placeholder="<%= l('IP or network in CIDR notation') %>" required="required" data-id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mod-next-hop" class="col-sm-3 control-label"><%= l('Communities') %></label>
+                        <div class="col-sm-9">
+                            <select id="mod-next-hop" name="next-hop" class="form-control">
+                            % for my $key (sort { $a cmp $b } keys %{$self->config('next_hops')}) {
+                                <option value="<%= $key %>"><%= sprintf('%s (%s)', $key, $self->config('next_hops')->{$key}) %></option>
+                            % }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mod-communities" class="col-sm-3 control-label"><%= l('Communities') %></label>
+                        <div class="col-sm-9">
+                            <select multiple id="mod-communities" name="communities" class="form-control" required="required">
+                            % for my $key (sort { $a cmp $b } keys %{$self->config('communities')}) {
+                                <option value="<%= $key %>"><%= sprintf('%s (%s)', $key, $self->config('communities')->{$key}) %></option>
+                            % }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <a href="#" class="btn btn-primary" id="submit-mod-btn"><%= l('Modify') %></a>
+                        <a href="#" class="btn btn-default" data-dismiss="modal" aria-label="Cancel"><%= l('Cancel') %></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of network modification modal -->
+
+<!-- Confirmation modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="confirmModalLabel"><%= l('Please, confirm your action') %></h4>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-text"></p>
+                <a href="#" class="btn btn-primary" id="submit-confirm-btn"><%= l('Confirm') %></a>
+                <a href="#" class="btn btn-default" data-dismiss="modal" aria-label="Cancel"><%= l('Cancel') %></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of confirmation modal -->
+
+%= javascript 'js/jquery-2.1.4.min.js'
+%= javascript 'js/bootstrap.min.js'
+%= javascript 'js/moment-with-locales.min.js'
+%= javascript 'js/jquery.gracefulWebSocket.js'
+%= javascript 'js/app.js'

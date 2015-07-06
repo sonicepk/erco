@@ -1,0 +1,147 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. ($cidr)
+#: lib/Erco/Controller/API/Subnet.pm:47
+msgid "\"%1\" is already announced."
+msgstr ""
+
+#. ($cidr)
+#: lib/Erco/Controller/API/Subnet.pm:118
+msgid "\"%1\" is not a valid IP or subnet"
+msgstr ""
+
+#. ($cidr)
+#: lib/Erco/Controller/API/Subnet.pm:66
+msgid "\"%1\" is not a valid IP or subnet."
+msgstr ""
+
+#. ($com)
+#: lib/Erco/Controller/API/Subnet.pm:30 lib/Erco/Controller/API/Subnet.pm:94
+msgid "\"%1\" is not a valid community (not declared in Erco configuration)."
+msgstr ""
+
+#. ($next_hop)
+#: lib/Erco/Controller/API/Subnet.pm:105 lib/Erco/Controller/API/Subnet.pm:41
+msgid "\"%1\" is not a valid next hop (not declared in Erco configuration)."
+msgstr ""
+
+#: templates/index.html.ep:74
+msgid "Actions"
+msgstr ""
+
+#: templates/index.html.ep:59
+msgid "Add"
+msgstr ""
+
+#: templates/index.html.ep:28
+msgid "Add a network to blacklist"
+msgstr ""
+
+#: templates/index.html.ep:64
+msgid "Announced networks"
+msgstr ""
+
+#: templates/index.html.ep:119 templates/index.html.ep:139
+msgid "Cancel"
+msgstr ""
+
+#: templates/index.html.ep:8
+msgid "Clear command output"
+msgstr ""
+
+#: templates/index.html.ep:108 templates/index.html.ep:49 templates/index.html.ep:71 templates/index.html.ep:98
+msgid "Communities"
+msgstr ""
+
+#: templates/index.html.ep:138
+msgid "Confirm"
+msgstr ""
+
+#: templates/index.html.ep:72
+msgid "Created at"
+msgstr ""
+
+#: lib/Erco/Controller/API/Exabgp.pm:46
+msgid "Exabgp has been reloaded but is not running."
+msgstr ""
+
+#: lib/Erco/Controller/API/Exabgp.pm:44
+msgid "Exabgp has been successfully reloaded."
+msgstr ""
+
+#: templates/index.html.ep:5
+msgid "Getting Exabgp status"
+msgstr ""
+
+#: templates/index.html.ep:33 templates/index.html.ep:35 templates/index.html.ep:92 templates/index.html.ep:94
+msgid "IP or network in CIDR notation"
+msgstr ""
+
+#: templates/index.html.ep:19
+msgid "Launch command"
+msgstr ""
+
+#: templates/index.html.ep:73
+msgid "Modified at"
+msgstr ""
+
+#: templates/index.html.ep:118
+msgid "Modify"
+msgstr ""
+
+#: templates/index.html.ep:87
+msgid "Modify network"
+msgstr ""
+
+#: templates/index.html.ep:69
+msgid "Network"
+msgstr ""
+
+#: lib/Erco/Controller/API/Subnet.pm:139
+msgid "Network successfully deleted."
+msgstr ""
+
+#: templates/index.html.ep:39 templates/index.html.ep:70
+msgid "Next hop"
+msgstr ""
+
+#: templates/index.html.ep:134
+msgid "Please, confirm your action"
+msgstr ""
+
+#: templates/index.html.ep:6
+msgid "Reload Exabgp"
+msgstr ""
+
+#. ($id)
+#: lib/Erco/Controller/API/Subnet.pm:115
+msgid "Unable to find or modify the network with id %1. Please contact the administrator."
+msgstr ""
+
+#. ($id)
+#: lib/Erco/Controller/API/Subnet.pm:143
+msgid "Unable to found the network with id = %1"
+msgstr ""
+
+#: lib/Erco/Controller/API/Exabgp.pm:71
+msgid "WebSocket handshake failed!"
+msgstr ""
+
+#: lib/Erco/Controller/API/Exabgp.pm:96
+msgid "You tried to launch an unauthorized command. Contact an administrator."
+msgstr ""

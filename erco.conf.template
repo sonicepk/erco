@@ -1,0 +1,60 @@
+# vim:set sw=4 ts=4 sts=4 ft=perl expandtab:
+{
+    ####################
+    # Hypnotoad settings
+    ####################
+    # see http://mojolicio.us/perldoc/Mojo/Server/Hypnotoad for a full list of settings
+    hypnotoad => {
+        # array of IP addresses and ports you want to listen to
+        listen => ['http://127.0.0.1:8080'],
+        # user and group you want for Lstu to run with
+        # be sure that this user/group have rights on the lstu directory
+        # if you launch lstu from a different user, be sure that this user have the right to su this user/group
+        # => if current_user is not the user that you sets here and is not root, there's chances that it will fail (see https://github.com/ldidry/lstu/issues/25)
+        user   => 'www-data',
+        group  => 'www-data'
+    },
+
+    # array of random strings used to encrypt cookies
+    # MANDOTORY, UNCOMMENT AND CHANGE IT!
+    #secrets        => ['fdjsofjoihrei'],
+
+    # path to the exabgp configuration file to handle
+    # MANDATORY, UNCOMMENT AND SET IT!
+    #exabgp_conf_file => '/etc/exabgp/bgp-conf.txt',
+
+    # Exabgp PID file
+    # MANDATORY, UNCOMMENT AND SET IT!
+    #exabgp_pid_file => '/var/run/exabgp/exabgp.pid',
+
+    # hash of available next-hops with a human-friendly name
+    # MANDATORY
+    #next_hops => {
+    #    '198.51.100.42' => 'zoidberg.example.org',
+    #    '203.0.113.42'  => 'bender.example.org',
+    #},
+
+    # hash of available communities with a human-friendly name
+    # MANDATORY
+    #communities => {
+    #    '1337:1984' => 'Planet express community',
+    #},
+
+    # array of commands you want to allow
+    # optional, please note that 'reload' will always be allowed
+    commands => [
+        #'version',
+        'reload',
+        #'restart',
+        #'shutdown',
+        #'show neighbors',
+        #'show routes',
+    ],
+
+    # URL sub-directory in which you want Lstu to be accessible
+    # example: you want to have Eco under https://example.org/eco/
+    # => set url_sub_dir to '/eco' or to '/eco/', it doesn't matter
+    # optional, defaut is /
+    #prefix        => '/',
+}
+

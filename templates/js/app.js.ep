@@ -1,0 +1,358 @@
+% # vim:set sw=4 ts=4 sts=4 ft=javascript expandtab:
+% use Mojo::JSON qw(encode_json);
+% my $com = encode_json($self->config('communities'));
+% my $nex = encode_json($self->config('next_hops'));
+var com = <%== $com %>;
+var nex = <%== $nex %>;
+
+// Launch Exabgp command
+function exabgpCommand(action, cb) {
+    console.log(action);
+    $.ajax({
+        url: '<%= url_for('exabgp_command') %>',
+        data: {
+            action: action
+        },
+        success: function(data) {
+            cb(data);
+        }
+    });
+}
+// Display a bootstrap alert div
+function addAlert(message, c) {
+    c  = (c !== undefined && c !== null) ? c : 'danger';
+    var alert = [
+        '<div class="alert alert-'+c+' alert-dismissible" role="alert">',
+        '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
+        '</div>'
+    ];
+    $('#alerts').append(alert.join(''));
+    $('#alerts .alert').last().append(document.createTextNode(message));
+}
+
+// Get networks list
+function networksListLoad() {
+    $('tbody').empty();
+    $.ajax({
+        url: '<%= url_for('get_subnet') %>',
+        success: function(data) {
+            data.forEach(populateNetworkTable);
+        },
+    });
+}
+
+// Add element to the networks table
+function populateNetworkTable(e, index) {
+    index = (index === -1) ? $('tbody > tr').length : index;
+    var communities = new Array();
+    e.communities.forEach(function(value) {
+        communities.push(value+' ('+com[value]+')');
+    });
+    var entry = [
+         '<tr id="element-', e.id, '">',
+             '<th scope="row" class="index">', (index + 1), '</th>',
+             '<td class="cidr">', e.cidr, '</td>',
+             '<td>', e.next_hop, ' (', nex[e.next_hop], ')', '</td>',
+             '<td id="com-', e.id, '">', communities.join('<br>'), '</td>',
+             '<td id="date-', (index + 1), '"></td>',
+             '<td id="mod-date-', (index + 1), '"></td>',
+             '<td class="text-center">',
+                 '<a href="#" id="mod-', e.id, '" data-id="', e.id, '" data-cidr="', e.cidr, '" data-next-hop="', e.next_hop, '" data-communities="', e.communities.join(','), '"><span class="glyphicon glyphicon-pencil"></span></a> ',
+                 '<a href="#" id="delete-', e.id,'"><span class="glyphicon glyphicon-remove"></span></a>',
+             '</td>',
+         '</tr>'
+    ];
+
+    $('tbody').append(entry.join(''));
+
+    // Write date in human localized format
+    var m = moment.unix(e.created_at).locale(window.navigator.language).format('LLLL');
+    $('#date-'+(index + 1)).text(m);
+    if (e.modified_at !== undefined && e.modified_at !== null) {
+        m = moment.unix(e.modified_at).locale(window.navigator.language).format('LLLL');
+        $('#mod-date-'+(index + 1)).text(m);
+    } else {
+        $('#mod-date-'+(index + 1)).toggleClass('text-center', true);
+        $('#mod-date-'+(index + 1)).text('Ø');
+    }
+
+    // Bind events
+    $('#mod-'+e.id).click(showModModal);
+    $('#delete-'+e.id).click(function() {showConfirmModal('delete', e);});
+}
+
+// Actualize the numbering in networks table
+function renumNetworkTable() {
+    $('.index').each(function(index) {
+        $(this).text(index + 1);
+    });
+}
+
+// Add network after confirmation
+function addNetwork() {
+    $.ajax({
+        url: '<%= url_for('add_subnet') %>',
+        method: 'POST',
+        data: {
+            cidr: $('#cidr').val(),
+            next_hop: $('#add-next-hop').val(),
+            communities: $('#add-communities').val()
+        },
+        success: function(data) {
+            if (data.success) {
+                populateNetworkTable(data.msg, -1);
+            } else {
+                addAlert(data.msg);
+            }
+            $('#submit-confirm-btn').unbind('click');
+            $('#cidr').val('');
+            $('#add-communities option').attr('selected', false);
+        },
+        error: function() {
+        },
+        complete: function() {
+            $('#confirmModal').modal('hide');
+        }
+    });
+}
+
+// Modify network
+function modNetwork() {
+    var id = $('#mod-cidr').attr('data-id');
+    $.ajax({
+        url: '<%= url_for('mod_subnet') %>',
+        method: 'PUT',
+        data: {
+            communities: $('#mod-communities').val(),
+            next_hop: $('#mod-next-hop').val(),
+            cidr: $('#mod-cidr').val(),
+            id: id
+        },
+        success: function(data) {
+            if (data.success) {
+                // Update table
+                $('#element-'+id+' > .cidr').text(data.msg.cidr);
+                var m = moment.unix(data.msg.modified_at).locale(window.navigator.language).format('LLLL');
+                $('#mod-date-'+id).toggleClass('text-center', false);
+                $('#mod-date-'+id).text(m);
+                var communities = new Array();
+                data.msg.communities.forEach(function(value) {
+                    communities.push(value+' ('+com[value]+')');
+                });
+                $("#com-"+id).html(communities.join('<br>'));
+
+                // Clear modification modal
+                $('#modModal').modal('hide');
+                $('#mod-cidr').attr('data-id', '');
+                $('#mod-cidr').val('');
+                $('#mod-communities option').attr('selected', false);
+            } else {
+                addAlert(data.msg);
+            }
+        },
+        error: function() {
+        }
+    });
+}
+
+// Delete network after confirmation
+function deleteNetwork(id) {
+    $('#confirmModal').modal('hide');
+    $.ajax({
+        url: '<%= url_for('del_subnet') %>',
+        method: 'DELETE',
+        data: {
+            id: id
+        },
+        success: function(data) {
+            if (data.success) {
+                $('#element-'+id).remove();
+                renumNetworkTable();
+                $('#submit-confirm-btn').unbind('click');
+            } else {
+                addAlert(data.msg);
+            }
+        },
+        error: function() {
+        },
+        complete: function() {
+            $('#confirmModal').modal('hide');
+        }
+    });
+}
+
+// Show form modal for network modification
+function showModModal() {
+    var c    = $(this);
+    var id   = c.attr('data-id');
+    var cidr = c.attr('data-cidr');
+    var next = c.attr('data-next-hop');
+    var com  = c.attr('data-communities').split(',');
+
+    $('#mod-cidr').attr('data-id', id);
+    $('#mod-cidr').val(cidr);
+    $('#mod-next-hop').val(next);
+    console.log(com);
+    com.forEach(function(value) {
+        $('#mod-communities option[value="' + value + '"]').attr('selected', true);
+    });
+    $('#modModal').modal('show');
+}
+
+// Show confirm modal for network addition or deletion
+function showConfirmModal(action, e) {
+    if (e === undefined) {
+        e = {
+            cidr: $('#cidr').val(),
+            next_hop: $('#add-next-hop').val(),
+            communities: $('#add-communities').val()
+        };
+    }
+    if (e.communities === null) {
+        addAlert('<%= l('You must select communities!') %>');
+    } else if (e.cidr === '') {
+        addAlert('<%= l('Network can not be empty!') %>');
+    } else {
+        var communities = new Array();
+        e.communities.forEach(function(value) {
+            communities.push(value+' ('+com[value]+')');
+        });
+        var text = [
+            '<%= l('Network: ') %>'+e.cidr,
+            '<%= l('Next hop: ') %>'+e.next_hop+' ('+nex[e.next_hop]+')',
+            '<%= l('Communities: ') %>'+communities.join(', ')
+        ];
+        $('#confirm-text').empty();
+        $('#confirm-text').append(document.createTextNode(text[0]));
+        $('#confirm-text').append('<br>');
+        $('#confirm-text').append(document.createTextNode(text[1]));
+        $('#confirm-text').append('<br>');
+        $('#confirm-text').append(document.createTextNode(text[2]));
+        if (action === 'add') {
+            $('#confirmModalLabel').text('<%= l('Please confirm the addition of the following network') %>');
+            $('#submit-confirm-btn').unbind('click');
+            $('#submit-confirm-btn').click(addNetwork);
+        } else if (action === 'delete') {
+            $('#confirmModalLabel').text('<%= l('Please confirm the deletion of the following network') %>');
+            $('#submit-confirm-btn').unbind('click');
+            $('#submit-confirm-btn').click(function() {deleteNetwork(e.id);});
+        }
+        $('#confirmModal').modal('show');
+    }
+}
+
+// Show Exabgp status in real-time through websocket
+function getExabgpStatus(fallback) {
+    if (fallback) {
+        $.ajax({
+            url: '<%= url_for('exabgp_status') %>',
+            method: 'GET',
+            success: function(data) {
+                var file_missing = data.file_missing;
+                var running      = data.running;
+                updateExabgpStatus(file_missing, running);
+                setTimeout(function(){ getExabgpStatus(true); }, 1000);
+            }
+        });
+    } else {
+        var ws = new WebSocket('<%= url_for('exabgp_status')->to_abs() %>');
+        ws.onopen = function() {
+            console.log('Connection is established!');
+        };
+        ws.onclose = function() {
+            console.log('Connection is closed');
+
+            // Update Exabgp status
+            $('#exabgp-status').toggleClass('label-danger', false);
+            $('#exabgp-status').toggleClass('label-warning', false);
+            $('#exabgp-status').toggleClass('label-success', false);
+            $('#exabgp-status').toggleClass('label-info', true);
+            $('#exabgp-status').text('<%= l('Getting Exabgp status') %>');
+
+            // Try to reopen websocket
+            getExabgpStatus();
+        };
+        ws.onerror = function() {
+            console.log('error');
+            delete ws;
+            getExabgpStatus(true);
+        };
+        ws.onmessage = function(e) {
+            console.log('New websocket message!');
+            var data         = JSON.parse(e.data);
+            var file_missing = data.file_missing;
+            var running      = data.running;
+            updateExabgpStatus(file_missing, running);
+        };
+    }
+}
+
+// Update Exabgp status
+function updateExabgpStatus(file_missing, running) {
+    if (file_missing) {
+        // Update Exabgp status
+        $('#exabgp-status').toggleClass('label-warning', false);
+        $('#exabgp-status').toggleClass('label-info', false);
+        $('#exabgp-status').toggleClass('label-success', false);
+        $('#exabgp-status').toggleClass('label-danger', true);
+        $('#exabgp-status').text('<%= l('Unable to fetch Exabgp status: PID file missing or not readable!') %>');
+    } else if (running) {
+        // Update Exabgp status
+        $('#exabgp-status').toggleClass('label-danger', false);
+        $('#exabgp-status').toggleClass('label-warning', false);
+        $('#exabgp-status').toggleClass('label-info', false);
+        $('#exabgp-status').toggleClass('label-success', true);
+        $('#exabgp-status').text('<%= l('Exabgp is running') %>');
+    } else {
+        // Update Exabgp status
+        $('#exabgp-status').toggleClass('label-success', false);
+        $('#exabgp-status').toggleClass('label-warning', false);
+        $('#exabgp-status').toggleClass('label-info', false);
+        $('#exabgp-status').toggleClass('label-danger', true);
+        $('#exabgp-status').text('<%= l('WARNING! Exabgp is NOT running!') %>');
+    }
+}
+
+// Bind events and launch beginning actions
+$('document').ready(function() {
+    $('#submit-btn').click(function() {showConfirmModal('add');});
+    $('#cidr').keypress(function(e) {
+        if (e.which == 13) {
+            showConfirmModal('add');
+        }
+    });
+    $('#submit-mod-btn').click(modNetwork);
+    $('#mod-cidr').keypress(function(e) {
+        if (e.which == 13) {
+            modNetwork();
+        }
+    });
+    $('#modModal').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    })
+    $('#reload-btn').click(networksListLoad);
+    $('form').submit(function(e){
+        e.preventDefault();
+    });
+    $('#reload-exabgp').click(function() {
+        exabgpCommand('reload', function(data) {
+            var c = (data.success) ? 'success' : 'danger';
+            addAlert(data.msg, c);
+        });
+    });
+    $('#launch-command').click(function() {
+        exabgpCommand($('#command').val(), function(data) {
+            if (data.success) {
+                $('#command-result').text(data.msg);
+            } else {
+                addAlert(data.msg, c);
+            }
+        });
+    });
+    $('#clear-command-output').click(function() {
+        $('#command-result').empty();
+    });
+    networksListLoad();
+    getExabgpStatus();
+});
+
