@@ -1,147 +1,148 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# Erco translation file
+# Copyright (C) Luc Didry
+# This file is distributed under the same license as the Erco package.
+# 
+# Translators:
+# Luc Didry <luc@didry.org>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Erco\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2015-07-07 13:53+0000\n"
+"Last-Translator: Luc Didry <luc@didry.org>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/erco/language/fr/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. ($cidr)
 #: lib/Erco/Controller/API/Subnet.pm:47
 msgid "\"%1\" is already announced."
-msgstr ""
+msgstr "\"%1\" est déjà annoncée."
 
 #. ($cidr)
-#: lib/Erco/Controller/API/Subnet.pm:118
-msgid "\"%1\" is not a valid IP or subnet"
-msgstr ""
-
-#. ($cidr)
-#: lib/Erco/Controller/API/Subnet.pm:66
-msgid "\"%1\" is not a valid IP or subnet."
-msgstr ""
+#: lib/Erco/Controller/API/Subnet.pm:118 lib/Erco/Controller/API/Subnet.pm:66
+msgid "\"%1\" is not a valid IP address or network."
+msgstr "\"%1\" n'est pas une adresse IP ou un réseau valide."
 
 #. ($com)
 #: lib/Erco/Controller/API/Subnet.pm:30 lib/Erco/Controller/API/Subnet.pm:94
 msgid "\"%1\" is not a valid community (not declared in Erco configuration)."
-msgstr ""
+msgstr "\"%1\" n'est pas une communauté valide (non déclarée dans la configuration d'Erco)."
 
 #. ($next_hop)
 #: lib/Erco/Controller/API/Subnet.pm:105 lib/Erco/Controller/API/Subnet.pm:41
 msgid "\"%1\" is not a valid next hop (not declared in Erco configuration)."
-msgstr ""
+msgstr "\"%1\" n'est pas un next hop valide (non déclaré dans la configuration d'Erco)."
 
 #: templates/index.html.ep:74
 msgid "Actions"
-msgstr ""
+msgstr "Actions"
 
 #: templates/index.html.ep:59
 msgid "Add"
-msgstr ""
+msgstr "Ajouter"
 
 #: templates/index.html.ep:28
-msgid "Add a network to blacklist"
-msgstr ""
+msgid "Annouce a new network or IP"
+msgstr "Annoncer un nouveau réseau ou une IP"
 
 #: templates/index.html.ep:64
 msgid "Announced networks"
-msgstr ""
+msgstr "Sous-réseaux annoncés"
 
 #: templates/index.html.ep:119 templates/index.html.ep:139
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #: templates/index.html.ep:8
 msgid "Clear command output"
-msgstr ""
+msgstr "Nettoyer la sortie des commandes"
 
-#: templates/index.html.ep:108 templates/index.html.ep:49 templates/index.html.ep:71 templates/index.html.ep:98
+#: templates/index.html.ep:108 templates/index.html.ep:49
+#: templates/index.html.ep:71 templates/index.html.ep:98
 msgid "Communities"
-msgstr ""
+msgstr "Communautés"
 
 #: templates/index.html.ep:138
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmer"
 
 #: templates/index.html.ep:72
 msgid "Created at"
-msgstr ""
+msgstr "Créé le"
 
 #: lib/Erco/Controller/API/Exabgp.pm:46
 msgid "Exabgp has been reloaded but is not running."
-msgstr ""
+msgstr "Exabgp a été relancé mais ne fonctionne pas."
 
 #: lib/Erco/Controller/API/Exabgp.pm:44
 msgid "Exabgp has been successfully reloaded."
-msgstr ""
+msgstr "Exabgp a été relancé avec succès."
 
 #: templates/index.html.ep:5
 msgid "Getting Exabgp status"
-msgstr ""
+msgstr "Récupération de l'état d'Exabgp"
 
-#: templates/index.html.ep:33 templates/index.html.ep:35 templates/index.html.ep:92 templates/index.html.ep:94
+#: templates/index.html.ep:33 templates/index.html.ep:35
+#: templates/index.html.ep:92 templates/index.html.ep:94
 msgid "IP or network in CIDR notation"
-msgstr ""
+msgstr "Adresse IP ou réseau en notation CIDR"
 
 #: templates/index.html.ep:19
 msgid "Launch command"
-msgstr ""
+msgstr "Lancer la commande"
 
 #: templates/index.html.ep:73
 msgid "Modified at"
-msgstr ""
+msgstr "Modifié le"
 
 #: templates/index.html.ep:118
 msgid "Modify"
-msgstr ""
+msgstr "Modifier"
 
 #: templates/index.html.ep:87
 msgid "Modify network"
-msgstr ""
+msgstr "Modifier le réseau"
 
 #: templates/index.html.ep:69
 msgid "Network"
-msgstr ""
+msgstr "Réseau"
 
 #: lib/Erco/Controller/API/Subnet.pm:139
 msgid "Network successfully deleted."
-msgstr ""
+msgstr "Le réseau a été supprimé avec succès."
 
 #: templates/index.html.ep:39 templates/index.html.ep:70
 msgid "Next hop"
-msgstr ""
+msgstr "Next hop"
 
 #: templates/index.html.ep:134
 msgid "Please, confirm your action"
-msgstr ""
+msgstr "Veuillez confirmer votre action"
 
 #: templates/index.html.ep:6
 msgid "Reload Exabgp"
-msgstr ""
+msgstr "Relancer Exabgp"
 
 #. ($id)
 #: lib/Erco/Controller/API/Subnet.pm:115
-msgid "Unable to find or modify the network with id %1. Please contact the administrator."
-msgstr ""
+msgid ""
+"Unable to find or modify the network with id %1. Please contact the "
+"administrator."
+msgstr "Impossible de retrouver ou de modifier le réseau possédant l'id %1. Veuillez contacter un administrateur."
 
 #. ($id)
 #: lib/Erco/Controller/API/Subnet.pm:143
 msgid "Unable to found the network with id = %1"
-msgstr ""
+msgstr "Impossible de retrouver le réseau possédant l'id %1"
 
 #: lib/Erco/Controller/API/Exabgp.pm:71
 msgid "WebSocket handshake failed!"
-msgstr ""
+msgstr "La négociation WebSocket a échoué !"
 
 #: lib/Erco/Controller/API/Exabgp.pm:96
 msgid "You tried to launch an unauthorized command. Contact an administrator."
-msgstr ""
+msgstr "Vous avez lancé une commande non autorisée. Contactez un administrateur."
