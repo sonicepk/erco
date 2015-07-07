@@ -63,7 +63,7 @@ sub post {
                 $success = 1;
             }
         } else {
-            $msg = $c->l('"[_1]" is not a valid IP or subnet.', $cidr);
+            $msg = $c->l('"[_1]" is not a valid IP address or network.', $cidr);
         }
     }
 
@@ -115,7 +115,7 @@ sub put {
                 $msg     = $c->l('Unable to find or modify the network with id [_1]. Please contact the administrator.', $id);
             }
         } else {
-            $msg     = $c->l('"[_1]" is not a valid IP or subnet', $cidr);
+            $msg     = $c->l('"[_1]" is not a valid IP address or network.', $cidr);
         }
     }
 
