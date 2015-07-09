@@ -19,7 +19,7 @@
     },
 
     # array of random strings used to encrypt cookies
-    # MANDOTORY, UNCOMMENT AND CHANGE IT!
+    # MANDATORY, UNCOMMENT AND CHANGE IT!
     #secrets        => ['fdjsofjoihrei'],
 
     # path to the exabgp configuration file to handle
