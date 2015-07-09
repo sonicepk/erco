@@ -9,7 +9,7 @@ sub startup {
 
     my $config = $self->plugin('Config' =>
         {
-            file    => File::Spec->catfile($Bin, '..' ,'eco.conf'),
+            file    => File::Spec->catfile($Bin, '..' ,'erco.conf'),
             default => {
                 prefix => '/'
             }
