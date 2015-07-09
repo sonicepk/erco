@@ -2,7 +2,7 @@ FORMAT: 1A
 
 # Erco API documentation
 
-[Back to Erco](../..)
+[Back to Erco](..)
 
 # Group Subnet
 

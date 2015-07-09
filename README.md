@@ -31,7 +31,7 @@ You can use it:
 
 The documentation is located at <http://erco.xyz/doc/index.html>, but you can [download the sources](https://git.framasoft.org/luc/erco-site/tree/master/content/doc) of the documentation.
 
-For the API, the documentation is located in the `public/api/index.html` file, which you can read online at <http://erco.xyz/demo/api/index/html>.
+For the API, the documentation is located in the `public/api/index.html` file, which you can read online at <http://erco.xyz/demo/api/index.html>.
 
 ## Use case
 
