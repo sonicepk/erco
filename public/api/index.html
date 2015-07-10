@@ -193,60 +193,69 @@ human readable representation of <code>modified_at</code></p></li>
 ]
 </code></pre></li></ul></section><section id="subnet--post" class="panel panel-success"><div class="panel-heading"><div style="float:left"><a href="#subnet--post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/api/subnet</code></div></div><div class="panel-body"><p>Announce a new subnet.</p>
 </div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#fb2b9af159a71592b91e7693d38f51b3" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="fb2b9af159a71592b91e7693d38f51b3" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/x-www-form-urlencoded</span><br></code></pre><h5>Body</h5><pre><code>cidr=<span class="hljs-number">198.51.100.43</span>/32&amp;next_hop=<span class="hljs-number">192.0.2.42</span>&amp;communities[]=<span class="hljs-number">64496:42</span>&amp;communities[]=<span class="hljs-number">64511:1337</span>
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#518a6ecd99c27d0ec6ba60c40bd0b51d" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="518a6ecd99c27d0ec6ba60c40bd0b51d" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">msg</span>":<span class="hljs-value">{
-        "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-number">3</span></span>,
-        "<span class="hljs-attribute">cidr</span>":<span class="hljs-value"><span class="hljs-string">"198.51.100.43\/32"</span>
-        <span class="hljs-string">"next_hop"</span>:<span class="hljs-string">"192.0.2.42"</span></span>,
-        "<span class="hljs-attribute">communities</span>":
-            <span class="hljs-value">[
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#4b3b8ed5bffbe3a21faed0fd7b90279a" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="4b3b8ed5bffbe3a21faed0fd7b90279a" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code><span class="hljs-preprocessor"># Success:</span>
+{
+    <span class="hljs-string">"success"</span>:<span class="hljs-literal">true</span>,
+    <span class="hljs-string">"msg"</span>:{
+        <span class="hljs-string">"id"</span>:<span class="hljs-number">3</span>,
+        <span class="hljs-string">"cidr"</span>:<span class="hljs-string">"198.51.100.43\/32"</span>
+        <span class="hljs-string">"next_hop"</span>:<span class="hljs-string">"192.0.2.42"</span>,
+        <span class="hljs-string">"communities"</span>:
+            [
                 <span class="hljs-string">"64496:42"</span>,
                 <span class="hljs-string">"64511:1337"</span>
-            ]</span>,
-        "<span class="hljs-attribute">created_at</span>":<span class="hljs-value"><span class="hljs-number">1433497409</span></span>,
-        "<span class="hljs-attribute">human_created_at</span>":<span class="hljs-value"><span class="hljs-string">"Fri, 05 Jun 2015 09:43:29 GMT"</span></span>,
-        "<span class="hljs-attribute">modified_at</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,
-        "<span class="hljs-attribute">human_modified_at</span>":<span class="hljs-value"><span class="hljs-literal">null</span>
-    </span>}
-</span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#cf3776e2894085f8c661dbaf8ceded00" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="cf3776e2894085f8c661dbaf8ceded00" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">false</span></span>,
-    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"The reason why it failed"</span>
-</span>}
+            ],
+        <span class="hljs-string">"created_at"</span>:<span class="hljs-number">1433497409</span>,
+        <span class="hljs-string">"human_created_at"</span>:<span class="hljs-string">"Fri, 05 Jun 2015 09:43:29 GMT"</span>,
+        <span class="hljs-string">"modified_at"</span>:<span class="hljs-literal">null</span>,
+        <span class="hljs-string">"human_modified_at"</span>:<span class="hljs-literal">null</span>
+    }
+}
+
+<span class="hljs-preprocessor"># Failure:</span>
+{
+    <span class="hljs-string">"success"</span>:<span class="hljs-literal">false</span>,
+    <span class="hljs-string">"msg"</span>:<span class="hljs-string">"The reason why it failed"</span>
+}
 </code></pre></li></ul></section><section id="subnet--put" class="panel panel-warning"><div class="panel-heading"><div style="float:left"><a href="#subnet--put" class="btn btn-xs btn-warning">PUT</a></div><div style="overflow:hidden"><code>/api/subnet</code></div></div><div class="panel-body"><p>Modified an announced subnet.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#fc82636e6190eae78eace18fa36c8b70" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="fc82636e6190eae78eace18fa36c8b70" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/x-www-form-urlencoded</span><br></code></pre><h5>Body</h5><pre><code>id=3cidr=<span class="hljs-number">198.51.100.1</span>/32&amp;next_hop=<span class="hljs-number">192.0.2.42</span>&amp;communities[]=<span class="hljs-number">64496:42</span>&amp;communities[]=<span class="hljs-number">64511:123</span>
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#81ab13706b603a4e72ff32a7c19d2106" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="81ab13706b603a4e72ff32a7c19d2106" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">msg</span>":<span class="hljs-value">{
-        "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-number">3</span></span>,
-        "<span class="hljs-attribute">cidr</span>":<span class="hljs-value"><span class="hljs-string">"198.51.100.1\/32"</span>
-        <span class="hljs-string">"next_hop"</span>:<span class="hljs-string">"192.0.2.42"</span></span>,
-        "<span class="hljs-attribute">communities</span>":
-            <span class="hljs-value">[
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#c9877a8a8122ecc9e2ee852cdbbcb764" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="c9877a8a8122ecc9e2ee852cdbbcb764" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/x-www-form-urlencoded</span><br></code></pre><h5>Body</h5><pre><code>id=3&amp;cidr=<span class="hljs-number">198.51.100.1</span>/32&amp;next_hop=<span class="hljs-number">192.0.2.42</span>&amp;communities[]=<span class="hljs-number">64496:42</span>&amp;communities[]=<span class="hljs-number">64511:123</span>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#a29e2b702a27a77cd9e0f3d75468f613" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="a29e2b702a27a77cd9e0f3d75468f613" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code><span class="hljs-preprocessor"># Success:</span>
+{
+    <span class="hljs-string">"success"</span>:<span class="hljs-literal">true</span>,
+    <span class="hljs-string">"msg"</span>:{
+        <span class="hljs-string">"id"</span>:<span class="hljs-number">3</span>,
+        <span class="hljs-string">"cidr"</span>:<span class="hljs-string">"198.51.100.1\/32"</span>
+        <span class="hljs-string">"next_hop"</span>:<span class="hljs-string">"192.0.2.42"</span>,
+        <span class="hljs-string">"communities"</span>:
+            [
                 <span class="hljs-string">"64496:42"</span>,
                 <span class="hljs-string">"64511:123"</span>
-            ]</span>,
-        "<span class="hljs-attribute">created_at</span>":<span class="hljs-value"><span class="hljs-number">1433497409</span></span>,
-        "<span class="hljs-attribute">human_created_at</span>":<span class="hljs-value"><span class="hljs-string">"Fri, 05 Jun 2015 09:43:29 GMT"</span></span>,
-        "<span class="hljs-attribute">modified_at</span>":<span class="hljs-value"><span class="hljs-number">1435832156</span></span>,
-        "<span class="hljs-attribute">human_modified_at</span>":<span class="hljs-value"><span class="hljs-string">"Thu, 02 Jul 2015 10:15:55 GMT"</span>
-    </span>}
-</span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#e6624fa8e1094aeba1703bb300cb6bca" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e6624fa8e1094aeba1703bb300cb6bca" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">false</span></span>,
-    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"The reason why it failed"</span>
-</span>}
+            ],
+        <span class="hljs-string">"created_at"</span>:<span class="hljs-number">1433497409</span>,
+        <span class="hljs-string">"human_created_at"</span>:<span class="hljs-string">"Fri, 05 Jun 2015 09:43:29 GMT"</span>,
+        <span class="hljs-string">"modified_at"</span>:<span class="hljs-number">1435832156</span>,
+        <span class="hljs-string">"human_modified_at"</span>:<span class="hljs-string">"Thu, 02 Jul 2015 10:15:55 GMT"</span>
+    }
+}
+
+<span class="hljs-preprocessor"># Failure:</span>
+{
+    <span class="hljs-string">"success"</span>:<span class="hljs-literal">false</span>,
+    <span class="hljs-string">"msg"</span>:<span class="hljs-string">"The reason why it failed"</span>
+}
 </code></pre></li></ul></section><section id="subnet--delete" class="panel panel-danger"><div class="panel-heading"><div style="float:left"><a href="#subnet--delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/api/subnet</code></div></div><div class="panel-body"><p>Stop to announce a subnet.</p>
 </div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#858c9c0f3d7521761ac4b87a57ce4de5" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="858c9c0f3d7521761ac4b87a57ce4de5" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/x-www-form-urlencoded</span><br></code></pre><h5>Body</h5><pre><code><span class="hljs-property">id</span>=<span class="hljs-number">3</span>
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#b9c3eb8e0a40a539f74fb7979348b04a" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="b9c3eb8e0a40a539f74fb7979348b04a" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"Network successfully deleted."</span>
-</span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#9c337bc640563ea0fffa00dd4dc90cf6" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="9c337bc640563ea0fffa00dd4dc90cf6" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">false</span></span>,
-    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"The reason why it failed"</span>
-</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#795a63cec89c0d51dd590780a99d93f9" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="795a63cec89c0d51dd590780a99d93f9" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code><span class="hljs-preprocessor"># Success:</span>
+{
+    <span class="hljs-string">"success"</span>:<span class="hljs-literal">true</span>,
+    <span class="hljs-string">"msg"</span>:<span class="hljs-string">"Network successfully deleted."</span>
+}
+
+<span class="hljs-preprocessor"># Failure:</span>
+{
+    <span class="hljs-string">"success"</span>:<span class="hljs-literal">false</span>,
+    <span class="hljs-string">"msg"</span>:<span class="hljs-string">"The reason why it failed"</span>
+}
 </code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="exabgp">Exabgp&nbsp;<a href="#exabgp"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="exabgp-">Resources&nbsp;<a href="#exabgp-"><i class="fa fa-link"></i></a></h4><section id="exabgp--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#exabgp--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/api/exabgp/status</code></div></div><div class="panel-body"><p>Get the status of Exabgp (running, not running).</p>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#43720ddbc7460c280d54c88365169ded" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="43720ddbc7460c280d54c88365169ded" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="hljs-attribute">running</span>":<span class="hljs-value"><span class="hljs-literal">true</span></span>,
@@ -254,15 +263,17 @@ human readable representation of <code>modified_at</code></p></li>
 </span>}
 </code></pre></li></ul></section><h4 id="exabgp-">Resources&nbsp;<a href="#exabgp-"><i class="fa fa-link"></i></a></h4><section id="exabgp--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#exabgp--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/api/exabgp/command{?action}</code></div></div><div class="panel-body"><p>Execute a command on Exabgp.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>action</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>reload</span></span><p>The available commands depends of your configuration</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#11a0d9fe8cd97be9f8de8483e61f3587" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="11a0d9fe8cd97be9f8de8483e61f3587" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"Exabgp has been successfully reloaded."</span>
-</span>}
-
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#418f321e82b815025f8ce13c4901337e" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="418f321e82b815025f8ce13c4901337e" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code><span class="hljs-preprocessor"># Success:</span>
 {
-    "<span class="hljs-attribute">success</span>":<span class="hljs-value"><span class="hljs-literal">false</span></span>,
-    "<span class="hljs-attribute">msg</span>":<span class="hljs-value"><span class="hljs-string">"The reason why it failed"</span>
-</span>}
+    <span class="hljs-string">"success"</span>:<span class="hljs-literal">true</span>,
+    <span class="hljs-string">"msg"</span>:<span class="hljs-string">"Exabgp has been successfully reloaded."</span>
+}
+
+<span class="hljs-preprocessor"># Failure:</span>
+{
+    <span class="hljs-string">"success"</span>:<span class="hljs-literal">false</span>,
+    <span class="hljs-string">"msg"</span>:<span class="hljs-string">"The reason why it failed"</span>
+}
 </code></pre></li></ul></section><h4 id="exabgp-">Resources&nbsp;<a href="#exabgp-"><i class="fa fa-link"></i></a></h4><section id="exabgp--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#exabgp--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/api/exabgp/commands</code></div></div><div class="panel-body"><p>Get the list of available commands.</p>
 </div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#26e65de7148977419a59722a76fd3605" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="26e65de7148977419a59722a76fd3605" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
     <span class="hljs-string">"reload"</span>
@@ -278,7 +289,7 @@ human readable representation of <code>modified_at</code></p></li>
     "<span class="hljs-attribute">192.0.2.42</span>":<span class="hljs-value"><span class="hljs-string">"Alice"</span></span>,
     "<span class="hljs-attribute">192.0.2.44</span>":<span class="hljs-value"><span class="hljs-string">"Bob"</span>
 </span>}
-</code></pre></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 09 Jul 2015</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
+</code></pre></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 10 Jul 2015</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
 
 </div></body><script src="js/jquery-1.11.0.min.js"></script><script src="js/bootstrap.min.js"></script><script>(function() {
   if (location.protocol === 'file:') {

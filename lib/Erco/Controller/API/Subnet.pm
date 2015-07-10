@@ -67,7 +67,6 @@ sub post {
         }
     }
 
-    $c->res->code(($success) ? 200 : 400);
     $c->render(
         json => {
             success => ($success) ? true : false,
@@ -119,7 +118,6 @@ sub put {
         }
     }
 
-    $c->res->code(($success) ? 200 : 400);
     $c->render(
         json => {
             success => ($success) ? true : false,
@@ -143,7 +141,6 @@ sub delete {
         $msg     = $c->l('Unable to found the network with id = [_1]', $id);
     }
 
-    $c->res->code(($success) ? 200 : 400);
     $c->render(
         json => {
             success => ($success) ? true : false,

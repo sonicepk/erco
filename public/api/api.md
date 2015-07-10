@@ -72,6 +72,7 @@ Announce a new subnet.
 
 + Response 200 (application/json)
 
+        # Success:
         {
             "success":true,
             "msg":{
@@ -90,8 +91,7 @@ Announce a new subnet.
             }
         }
 
-+ Response 400 (application/json)
-
+        # Failure:
         {
             "success":false,
             "msg":"The reason why it failed"
@@ -103,10 +103,11 @@ Modified an announced subnet.
 
 + Request (application/x-www-form-urlencoded)
 
-        id=3cidr=198.51.100.1/32&next_hop=192.0.2.42&communities[]=64496:42&communities[]=64511:123
+        id=3&cidr=198.51.100.1/32&next_hop=192.0.2.42&communities[]=64496:42&communities[]=64511:123
 
 + Response 200 (application/json)
 
+        # Success:
         {
             "success":true,
             "msg":{
@@ -125,8 +126,7 @@ Modified an announced subnet.
             }
         }
 
-+ Response 400 (application/json)
-
+        # Failure:
         {
             "success":false,
             "msg":"The reason why it failed"
@@ -142,13 +142,13 @@ Stop to announce a subnet.
 
 + Response 200 (application/json)
 
+        # Success:
         {
             "success":true,
             "msg":"Network successfully deleted."
         }
 
-+ Response 400 (application/json)
-
+        # Failure:
         {
             "success":false,
             "msg":"The reason why it failed"
@@ -176,11 +176,13 @@ Execute a command on Exabgp.
 
 + Response 200 (application/json)
 
+        # Success:
         {
             "success":true,
             "msg":"Exabgp has been successfully reloaded."
         }
 
+        # Failure:
         {
             "success":false,
             "msg":"The reason why it failed"

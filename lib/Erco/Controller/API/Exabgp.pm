@@ -93,7 +93,10 @@ sub command {
             });
         } else {
             $c->app->log->info(sprintf('IP %s tried to launch the following unauthorized command: %s', $c->remote_addr, $a));
-            $msg->{msg}     = $c->l('You tried to launch an unauthorized command. Contact an administrator.');
+            $msg->{msg} = $c->l('You tried to launch an unauthorized command. Contact an administrator.');
+            $c->render(
+                json => $msg
+            );
         }
     }
 }
