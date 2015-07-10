@@ -149,8 +149,6 @@ function modNetwork() {
             } else {
                 addAlert(data.msg);
             }
-        },
-        error: function() {
         }
     });
 }
@@ -172,8 +170,6 @@ function deleteNetwork(id) {
             } else {
                 addAlert(data.msg);
             }
-        },
-        error: function() {
         },
         complete: function() {
             $('#confirmModal').modal('hide');
@@ -229,11 +225,11 @@ function showConfirmModal(action, e) {
         $('#confirm-text').append('<br>');
         $('#confirm-text').append(document.createTextNode(text[2]));
         if (action === 'add') {
-            $('#confirmModalLabel').text('<%= l('Please confirm the addition of the following network') %>');
+            $('#confirmModalLabel').html('<%= l('Please confirm the addition of the following network') %>');
             $('#submit-confirm-btn').unbind('click');
             $('#submit-confirm-btn').click(addNetwork);
         } else if (action === 'delete') {
-            $('#confirmModalLabel').text('<%= l('Please confirm the deletion of the following network') %>');
+            $('#confirmModalLabel').html('<%= l('Please confirm the deletion of the following network') %>');
             $('#submit-confirm-btn').unbind('click');
             $('#submit-confirm-btn').click(function() {deleteNetwork(e.id);});
         }
@@ -267,7 +263,7 @@ function getExabgpStatus(fallback) {
             $('#exabgp-status').toggleClass('label-warning', false);
             $('#exabgp-status').toggleClass('label-success', false);
             $('#exabgp-status').toggleClass('label-info', true);
-            $('#exabgp-status').text('<%= l('Getting Exabgp status') %>');
+            $('#exabgp-status').html('<%= l('Getting Exabgp status') %>');
 
             // Try to reopen websocket
             getExabgpStatus();
@@ -295,21 +291,21 @@ function updateExabgpStatus(file_missing, running) {
         $('#exabgp-status').toggleClass('label-info', false);
         $('#exabgp-status').toggleClass('label-success', false);
         $('#exabgp-status').toggleClass('label-danger', true);
-        $('#exabgp-status').text('<%= l('Unable to fetch Exabgp status: PID file missing or not readable!') %>');
+        $('#exabgp-status').html('<%= l('Unable to fetch Exabgp status: PID file missing or not readable!') %>');
     } else if (running) {
         // Update Exabgp status
         $('#exabgp-status').toggleClass('label-danger', false);
         $('#exabgp-status').toggleClass('label-warning', false);
         $('#exabgp-status').toggleClass('label-info', false);
         $('#exabgp-status').toggleClass('label-success', true);
-        $('#exabgp-status').text('<%= l('Exabgp is running') %>');
+        $('#exabgp-status').html('<%= l('Exabgp is running') %>');
     } else {
         // Update Exabgp status
         $('#exabgp-status').toggleClass('label-success', false);
         $('#exabgp-status').toggleClass('label-warning', false);
         $('#exabgp-status').toggleClass('label-info', false);
         $('#exabgp-status').toggleClass('label-danger', true);
-        $('#exabgp-status').text('<%= l('WARNING! Exabgp is NOT running!') %>');
+        $('#exabgp-status').html('<%= l('WARNING! Exabgp is NOT running!') %>');
     }
 }
 
@@ -343,7 +339,7 @@ $('document').ready(function() {
     $('#launch-command').click(function() {
         exabgpCommand($('#command').val(), function(data) {
             if (data.success) {
-                $('#command-result').text(data.msg);
+                $('#command-result').html(data.msg);
             } else {
                 addAlert(data.msg, c);
             }
