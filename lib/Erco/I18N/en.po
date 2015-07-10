@@ -52,6 +52,10 @@ msgstr ""
 msgid "Announced networks"
 msgstr ""
 
+#: templates/e.html.ep:4
+msgid "Buy the ebook (french only)"
+msgstr ""
+
 #: templates/index.html.ep:119 templates/index.html.ep:139
 msgid "Cancel"
 msgstr ""
@@ -62,6 +66,10 @@ msgstr ""
 
 #: templates/index.html.ep:108 templates/index.html.ep:49 templates/index.html.ep:71 templates/index.html.ep:98
 msgid "Communities"
+msgstr ""
+
+#: templates/js/app.js.ep:223
+msgid "Communities: "
 msgstr ""
 
 #: templates/index.html.ep:138
@@ -76,11 +84,15 @@ msgstr ""
 msgid "Exabgp has been reloaded but is not running."
 msgstr ""
 
-#: lib/Erco/Controller/API/Exabgp.pm:44
+#: lib/Erco/Controller/API/Exabgp.pm:44 lib/Erco/ExaConf.pm:136
 msgid "Exabgp has been successfully reloaded."
 msgstr ""
 
-#: templates/index.html.ep:5
+#: templates/js/app.js.ep:305
+msgid "Exabgp is running"
+msgstr ""
+
+#: templates/index.html.ep:5 templates/js/app.js.ep:270
 msgid "Getting Exabgp status"
 msgstr ""
 
@@ -108,12 +120,32 @@ msgstr ""
 msgid "Network"
 msgstr ""
 
+#: templates/js/app.js.ep:214
+msgid "Network can not be empty!"
+msgstr ""
+
 #: lib/Erco/Controller/API/Subnet.pm:139
 msgid "Network successfully deleted."
 msgstr ""
 
+#: templates/js/app.js.ep:221
+msgid "Network: "
+msgstr ""
+
 #: templates/index.html.ep:39 templates/index.html.ep:70
 msgid "Next hop"
+msgstr ""
+
+#: templates/js/app.js.ep:222
+msgid "Next hop: "
+msgstr ""
+
+#: templates/js/app.js.ep:232
+msgid "Please confirm the addition of the following network"
+msgstr ""
+
+#: templates/js/app.js.ep:236
+msgid "Please confirm the deletion of the following network"
 msgstr ""
 
 #: templates/index.html.ep:134
@@ -122,6 +154,10 @@ msgstr ""
 
 #: templates/index.html.ep:6
 msgid "Reload Exabgp"
+msgstr ""
+
+#: templates/js/app.js.ep:298
+msgid "Unable to fetch Exabgp status: PID file missing or not readable!"
 msgstr ""
 
 #. ($id)
@@ -134,8 +170,20 @@ msgstr ""
 msgid "Unable to found the network with id = %1"
 msgstr ""
 
+#: templates/js/app.js.ep:312
+msgid "WARNING! Exabgp is NOT running!"
+msgstr ""
+
+#: lib/Erco/ExaConf.pm:126
+msgid "We tried to reload Exabgp but it failed (WebSocket handshake failed). Contact an administrator."
+msgstr ""
+
 #: lib/Erco/Controller/API/Exabgp.pm:71
 msgid "WebSocket handshake failed!"
+msgstr ""
+
+#: templates/js/app.js.ep:212
+msgid "You must select communities!"
 msgstr ""
 
 #: lib/Erco/Controller/API/Exabgp.pm:96

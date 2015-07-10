@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Erco\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-07-10 09:34+0000\n"
+"PO-Revision-Date: 2015-07-10 09:46+0000\n"
 "Last-Translator: Luc Didry <luc@didry.org>\n"
 "Language-Team: French (http://www.transifex.com/p/erco/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -53,6 +53,10 @@ msgstr "Annoncer un nouveau réseau ou une IP"
 msgid "Announced networks"
 msgstr "Sous-réseaux annoncés"
 
+#: templates/e.html.ep:4
+msgid "Buy the ebook (french only)"
+msgstr "Acheter l'ebook (français uniquement)"
+
 #: templates/index.html.ep:119 templates/index.html.ep:139
 msgid "Cancel"
 msgstr "Annuler"
@@ -66,6 +70,10 @@ msgstr "Nettoyer la sortie des commandes"
 msgid "Communities"
 msgstr "Communautés"
 
+#: templates/js/app.js.ep:223
+msgid "Communities: "
+msgstr "Communautés :"
+
 #: templates/index.html.ep:138
 msgid "Confirm"
 msgstr "Confirmer"
@@ -78,11 +86,15 @@ msgstr "Créé le"
 msgid "Exabgp has been reloaded but is not running."
 msgstr "Exabgp a été relancé mais ne fonctionne pas."
 
-#: lib/Erco/Controller/API/Exabgp.pm:44
+#: lib/Erco/Controller/API/Exabgp.pm:44 lib/Erco/ExaConf.pm:136
 msgid "Exabgp has been successfully reloaded."
 msgstr "Exabgp a été relancé avec succès."
 
-#: templates/index.html.ep:5
+#: templates/js/app.js.ep:305
+msgid "Exabgp is running"
+msgstr "Exabgp fonctionne"
+
+#: templates/index.html.ep:5 templates/js/app.js.ep:270
 msgid "Getting Exabgp status"
 msgstr "Récupération de l'état d'Exabgp"
 
@@ -111,13 +123,33 @@ msgstr "Modifier le réseau"
 msgid "Network"
 msgstr "Réseau"
 
+#: templates/js/app.js.ep:214
+msgid "Network can not be empty!"
+msgstr "Le réseau ne peut pas être vide !"
+
 #: lib/Erco/Controller/API/Subnet.pm:139
 msgid "Network successfully deleted."
 msgstr "Le réseau a été supprimé avec succès."
 
+#: templates/js/app.js.ep:221
+msgid "Network: "
+msgstr "Réseau :"
+
 #: templates/index.html.ep:39 templates/index.html.ep:70
 msgid "Next hop"
 msgstr "Next hop"
+
+#: templates/js/app.js.ep:222
+msgid "Next hop: "
+msgstr "Next hop :"
+
+#: templates/js/app.js.ep:232
+msgid "Please confirm the addition of the following network"
+msgstr "Veuillez confirmer l'ajout du réseau suivant"
+
+#: templates/js/app.js.ep:236
+msgid "Please confirm the deletion of the following network"
+msgstr "Veuillez confirmer la suppression du réseau suivant"
 
 #: templates/index.html.ep:134
 msgid "Please, confirm your action"
@@ -126,6 +158,10 @@ msgstr "Veuillez confirmer votre action"
 #: templates/index.html.ep:6
 msgid "Reload Exabgp"
 msgstr "Relancer Exabgp"
+
+#: templates/js/app.js.ep:298
+msgid "Unable to fetch Exabgp status: PID file missing or not readable!"
+msgstr "Impossible de récupérer le statut d'Exabgp : fichier de PID manquant ou non lisible !"
 
 #. ($id)
 #: lib/Erco/Controller/API/Subnet.pm:115
@@ -139,9 +175,23 @@ msgstr "Impossible de retrouver ou de modifier le réseau possédant l'id %1. Ve
 msgid "Unable to found the network with id = %1"
 msgstr "Impossible de retrouver le réseau possédant l'id %1"
 
+#: templates/js/app.js.ep:312
+msgid "WARNING! Exabgp is NOT running!"
+msgstr "ATTENTION ! Exabgp ne fonctionne pas !"
+
+#: lib/Erco/ExaConf.pm:126
+msgid ""
+"We tried to reload Exabgp but it failed (WebSocket handshake failed). "
+"Contact an administrator."
+msgstr "Nous avons essayé de relancer Exabgp mais cela a échoué (échec de la négociation WebSocket). Contactez un administrateur."
+
 #: lib/Erco/Controller/API/Exabgp.pm:71
 msgid "WebSocket handshake failed!"
 msgstr "La négociation WebSocket a échoué !"
+
+#: templates/js/app.js.ep:212
+msgid "You must select communities!"
+msgstr "Vous devez sélectionner une ou plusieurs communautés !"
 
 #: lib/Erco/Controller/API/Exabgp.pm:96
 msgid "You tried to launch an unauthorized command. Contact an administrator."

@@ -1,5 +1,12 @@
+templates/e.html.ep
 templates/index.html.ep
 templates/layouts/default.html.ep
+templates/js/app.js.ep
 lib/Erco.pm
+lib/Erco/ExaConf.pm
+lib/Erco/ExaConf/Entries.pm
+lib/Erco/ExaConf/Entry.pm
+lib/Erco/Controller/API/Communities.pm
 lib/Erco/Controller/API/Exabgp.pm
+lib/Erco/Controller/API/NextHops.pm
 lib/Erco/Controller/API/Subnet.pm
