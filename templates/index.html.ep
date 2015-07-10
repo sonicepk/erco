@@ -146,5 +146,4 @@
 %= javascript 'js/jquery-2.1.4.min.js'
 %= javascript 'js/bootstrap.min.js'
 %= javascript 'js/moment-with-locales.min.js'
-%= javascript 'js/jquery.gracefulWebSocket.js'
 %= javascript 'js/app.js'
