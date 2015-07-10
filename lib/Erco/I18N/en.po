@@ -45,7 +45,7 @@ msgid "Add"
 msgstr ""
 
 #: templates/index.html.ep:28
-msgid "Annouce a new network or IP"
+msgid "Announce a new network or IP"
 msgstr ""
 
 #: templates/index.html.ep:64
