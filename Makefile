@@ -2,7 +2,10 @@ ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 EXTRACT_FILES=utilities/locales_files.txt
 EXTRACT_TO_EN=lib/Erco/I18N/en.po
 EXTRACT_TO_FR=lib/Erco/I18N/fr.po
-XGETTEXT=carton exec local/bin/xgettext.pl
+CARTON=carton exec
+XGETTEXT=$(CARTON) local/bin/xgettext.pl
+REAL_ERCO=script/application
+ERCO=script/erco
 
 AGLIO=aglio --full-width
 AGLIO_THEME=$(ROOT_DIR)/public/api/jade/erco.jade
@@ -15,3 +18,10 @@ locales:
 
 doc:
 	$(AGLIO) -t $(AGLIO_THEME) -i $(API_MD) -o $(API_HTML)
+
+test:
+	pgrep -f exabgp > $(ROOT_DIR)/exa.pid
+	$(CARTON) $(REAL_ERCO) test
+
+dev:
+	$(CARTON) morbo $(ERCO) --listen http://0.0.0.0:3000
