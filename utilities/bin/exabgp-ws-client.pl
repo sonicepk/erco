@@ -48,7 +48,7 @@ my $prompt = '> ';
 # Launch console
 ################
 print <<EOF;
-Welcome on ws-client.
+Welcome on exabgp-ws-client.
 Type 'help' to get some help, 'exit' or 'quit' to exit.
 Easy, isn't it?
 EOF
