@@ -1,0 +1,16 @@
+[Unit]
+Description=Erco
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+WorkingDirectory=/opt/erco/
+PIDFile=/opt/erco/script/hypnotoad.pid
+ExecStart=/usr/local/bin/carton exec hypnotoad script/erco -f
+ExecStop=/usr/local/bin/carton exec hypnotoad -s script/erco
+ExecReload=/usr/local/bin/carton exec hypnotoad script/erco
+
+[Install]
+WantedBy=multi-user.target

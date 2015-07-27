@@ -49,7 +49,8 @@ my $prompt = '> ';
 ################
 print <<EOF;
 Welcome on ws-client.
-Type 'help' to get some help, 'exit' or 'quit' to exit. Easy, isn't it ?
+Type 'help' to get some help, 'exit' or 'quit' to exit.
+Easy, isn't it?
 EOF
 
 while (defined(my $command = $term->readline($prompt))) {

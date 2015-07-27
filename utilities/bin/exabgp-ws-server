@@ -1,0 +1,24 @@
+#!/bin/bash
+# vim:set sw=4 ts=4 sts=4 ft=sh expandtab:
+
+trap '' SIGINT
+
+# Get script real path
+# Snippet from http://stackoverflow.com/questions/4774054/reliable-way-for-a-bash-script-to-get-the-full-path-to-itself
+pushd . > /dev/null
+SCRIPT_PATH="${BASH_SOURCE[0]}"
+while([ -h "${SCRIPT_PATH}" ])
+do
+    cd "$(dirname "${SCRIPT_PATH}")"
+    SCRIPT_PATH="$(readlink "$(basename "${SCRIPT_PATH}")")"
+done
+cd "$(dirname "${SCRIPT_PATH}")" > /dev/null
+REALPATH="$(pwd)";
+popd  > /dev/null
+cd $REALPATH/../../
+
+export MOJO_LOG_LEVEL=info
+export MOJO_LISTEN=http://127.0.0.1:3005
+export MOJO_MODE=production
+
+exec carton exec ./utilities/bin/exabgp-ws-server.pl daemon

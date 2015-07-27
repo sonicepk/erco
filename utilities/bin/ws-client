@@ -1,7 +1,0 @@
-#!/bin/bash
-# vim:set sw=4 ts=4 sts=4 ft=sh expandtab:
-
-REALPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd $REALPATH/../../
-
-carton exec ./utilities/bin/ws-client.pl

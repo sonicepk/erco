@@ -2,3 +2,5 @@ local/*
 erco.conf
 *.swp
 exa.pid
+script/hypnotoad.pid
+!utilities/nginx/erco.conf

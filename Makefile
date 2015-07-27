@@ -20,7 +20,6 @@ doc:
 	$(AGLIO) -t $(AGLIO_THEME) -i $(API_MD) -o $(API_HTML)
 
 test:
-	pgrep -f exabgp > $(ROOT_DIR)/exa.pid
 	$(CARTON) $(REAL_ERCO) test
 
 dev:

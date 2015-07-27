@@ -28,7 +28,7 @@ websocket '/' => sub {
                     $c->app->log->info($msg);
                     $ws->send($msg);
                 } else {
-                    usleep 500;
+                    usleep 750;
                 }
                 while (defined(my $msg = $io->getline)) {;
                     chomp $msg;
@@ -36,7 +36,7 @@ websocket '/' => sub {
                     $ws->send($msg);
 
                     # Be sure it's the end of the answer
-                    usleep 500 if ($io->eof);
+                    usleep 750 if ($io->eof);
                 }
                 $io->close;
             }
