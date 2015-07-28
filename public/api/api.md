@@ -4,6 +4,8 @@ FORMAT: 1A
 
 [Back to Erco](..)
 
+Please note that if you're not using Erco at the root of your web server, you'll need to add your URL prefix before the API URLs presented below.
+
 # Group Subnet
 
 #### Attributes
