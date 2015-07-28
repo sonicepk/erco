@@ -15,7 +15,7 @@
         group  => 'www-data',
         # DO NOT CHANGE THIS OR YOU WILL GET INCONSISTENCIES IN THE ROUTES
         # YOU HAVE BEEN WARNED!
-        worker => 1,
+        workers => 1,
     },
 
     # array of random strings used to encrypt cookies
