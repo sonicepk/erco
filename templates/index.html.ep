@@ -2,22 +2,27 @@
 % title 'Erco - Exabgp Routes Controller';
 <div id="exabgp-bloc" class="row well">
     <div class="col-sm-6">
+        <h4><a href="<%= url_for('api') %>" class="label label-info">API</a> <a href="#" id="reload-exabgp" class="label label-default"><%= l('Reload Exabgp') %></a></h4>
         <h4 id="exabgp-h4"><span class="label label-info" id="exabgp-status"><%= l('Getting Exabgp status') %></span></h4>
-        <h4><a href="#" id="reload-exabgp" class="label label-default"><%= l('Reload Exabgp') %></a></h4>
-        <h4><a href="<%= url_for('api') %>" class="label label-info">API</a></h4>
-        <h4><a href="#" id="clear-command-output" class="label label-warning"><%= l('Clear command output') %></a></h4>
+        <br>
     </div>
     <div class="col-sm-6">
         <form class="form-horizontal">
-            <div class="form-group">
-                    <select id="command" name="command" class="form-control">
-                    % for my $key (sort { $a cmp $b } @{$self->config('commands')}) {
-                        <option value="<%= $key %>"><%= $key %></option>
-                    % }
-                    </select>
+            <div>
+                <select id="command" name="command" class="form-control">
+                % for my $key (sort { $a cmp $b } @{$self->config('commands')}) {
+                    <option value="<%= $key %>"><%= $key %></option>
+                % }
+                </select>
             </div>
-            <a href="#" id="launch-command" class="pull-right btn btn-default"><%= l('Launch command') %></a>
+            <br>
+            <div class="btn-group btn-group-justified" role="group">
+                <a href="#" id="clear-command-output" class="btn btn-warning"><%= l('Clear command output') %></a>
+                <a href="#" id="launch-command" class="btn btn-default"><%= l('Launch command') %></a>
+            </div>
         </form>
+    </div>
+    <div class="col-md-offset-6 col-md-6 col-sm-12">
         <div>
             <pre><code id="command-result">
             </code></pre>
