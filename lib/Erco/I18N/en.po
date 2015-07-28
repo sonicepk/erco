@@ -1,191 +1,198 @@
 # Erco translation file
 # Copyright (C) Luc Didry
 # This file is distributed under the same license as the Erco package.
+# 
+# Translators:
 # Luc Didry <luc@didry.org>, 2015
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Erco\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-07-07 13:53+0000\n"
+"PO-Revision-Date: 2015-07-28 11:50+0000\n"
 "Last-Translator: Luc Didry <luc@didry.org>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/erco/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. ($cidr)
 #: lib/Erco/Controller/API/Subnet.pm:47
 msgid "\"%1\" is already announced."
-msgstr ""
+msgstr "\"%1\" is already announced."
 
 #. ($cidr)
-#: lib/Erco/Controller/API/Subnet.pm:118 lib/Erco/Controller/API/Subnet.pm:66
+#: lib/Erco/Controller/API/Subnet.pm:117 lib/Erco/Controller/API/Subnet.pm:66
 msgid "\"%1\" is not a valid IP address or network."
-msgstr ""
+msgstr "\"%1\" is not a valid IP address or network."
 
 #. ($com)
-#: lib/Erco/Controller/API/Subnet.pm:30 lib/Erco/Controller/API/Subnet.pm:94
+#: lib/Erco/Controller/API/Subnet.pm:30 lib/Erco/Controller/API/Subnet.pm:93
 msgid "\"%1\" is not a valid community (not declared in Erco configuration)."
-msgstr ""
+msgstr "\"%1\" is not a valid community (not declared in Erco configuration)."
 
 #. ($next_hop)
-#: lib/Erco/Controller/API/Subnet.pm:105 lib/Erco/Controller/API/Subnet.pm:41
+#: lib/Erco/Controller/API/Subnet.pm:104 lib/Erco/Controller/API/Subnet.pm:41
 msgid "\"%1\" is not a valid next hop (not declared in Erco configuration)."
-msgstr ""
+msgstr "\"%1\" is not a valid next hop (not declared in Erco configuration)."
 
-#: templates/index.html.ep:74
+#: templates/index.html.ep:79
 msgid "Actions"
-msgstr ""
-
-#: templates/index.html.ep:59
-msgid "Add"
-msgstr ""
-
-#: templates/index.html.ep:28
-msgid "Announce a new network or IP"
-msgstr ""
+msgstr "Actions"
 
 #: templates/index.html.ep:64
+msgid "Add"
+msgstr "Add"
+
+#: templates/index.html.ep:33
+msgid "Announce a new network or IP"
+msgstr "Announce a new network or IP"
+
+#: templates/index.html.ep:69
 msgid "Announced networks"
-msgstr ""
+msgstr "Announced networks"
 
 #: templates/e.html.ep:4
 msgid "Buy the ebook (french only)"
-msgstr ""
+msgstr "Buy the ebook (french only)"
 
-#: templates/index.html.ep:119 templates/index.html.ep:139
+#: templates/index.html.ep:124 templates/index.html.ep:144
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
-#: templates/index.html.ep:8
+#: templates/index.html.ep:20
 msgid "Clear command output"
-msgstr ""
+msgstr "Clear command output"
 
-#: templates/index.html.ep:108 templates/index.html.ep:49 templates/index.html.ep:71 templates/index.html.ep:98
+#: templates/index.html.ep:103 templates/index.html.ep:113
+#: templates/index.html.ep:54 templates/index.html.ep:76
 msgid "Communities"
-msgstr ""
+msgstr "Communities"
 
-#: templates/js/app.js.ep:223
-msgid "Communities: "
-msgstr ""
+#: templates/js/app.js.ep:219
+msgid "Communities:"
+msgstr "Communities:"
 
-#: templates/index.html.ep:138
+#: templates/index.html.ep:143
 msgid "Confirm"
-msgstr ""
+msgstr "Confirm"
 
-#: templates/index.html.ep:72
+#: templates/index.html.ep:77
 msgid "Created at"
-msgstr ""
+msgstr "Created at"
 
 #: lib/Erco/Controller/API/Exabgp.pm:46
 msgid "Exabgp has been reloaded but is not running."
-msgstr ""
+msgstr "Exabgp has been reloaded but is not running."
 
 #: lib/Erco/Controller/API/Exabgp.pm:44 lib/Erco/ExaConf.pm:136
 msgid "Exabgp has been successfully reloaded."
-msgstr ""
+msgstr "Exabgp has been successfully reloaded."
 
-#: templates/js/app.js.ep:305
+#: templates/js/app.js.ep:301
 msgid "Exabgp is running"
-msgstr ""
+msgstr "Exabgp is running"
 
-#: templates/index.html.ep:5 templates/js/app.js.ep:270
+#: templates/index.html.ep:6 templates/js/app.js.ep:266
 msgid "Getting Exabgp status"
-msgstr ""
+msgstr "Getting Exabgp status"
 
-#: templates/index.html.ep:33 templates/index.html.ep:35 templates/index.html.ep:92 templates/index.html.ep:94
+#: templates/index.html.ep:38 templates/index.html.ep:40
+#: templates/index.html.ep:97 templates/index.html.ep:99
 msgid "IP or network in CIDR notation"
-msgstr ""
+msgstr "IP or network in CIDR notation"
 
-#: templates/index.html.ep:19
+#: templates/index.html.ep:21
 msgid "Launch command"
-msgstr ""
+msgstr "Launch command"
 
-#: templates/index.html.ep:73
+#: templates/index.html.ep:78
 msgid "Modified at"
-msgstr ""
+msgstr "Modified at"
 
-#: templates/index.html.ep:118
+#: templates/index.html.ep:123
 msgid "Modify"
-msgstr ""
+msgstr "Modify"
 
-#: templates/index.html.ep:87
+#: templates/index.html.ep:92
 msgid "Modify network"
-msgstr ""
+msgstr "Modify network"
 
-#: templates/index.html.ep:69
+#: templates/index.html.ep:74
 msgid "Network"
-msgstr ""
+msgstr "Network"
 
-#: templates/js/app.js.ep:214
+#: templates/js/app.js.ep:210
 msgid "Network can not be empty!"
-msgstr ""
+msgstr "Network can not be empty!"
 
-#: lib/Erco/Controller/API/Subnet.pm:139
+#: lib/Erco/Controller/API/Subnet.pm:137
 msgid "Network successfully deleted."
-msgstr ""
+msgstr "Network successfully deleted."
 
-#: templates/js/app.js.ep:221
-msgid "Network: "
-msgstr ""
+#: templates/js/app.js.ep:217
+msgid "Network:"
+msgstr "Network:"
 
-#: templates/index.html.ep:39 templates/index.html.ep:70
+#: templates/index.html.ep:44 templates/index.html.ep:75
 msgid "Next hop"
-msgstr ""
+msgstr "Next hop"
 
-#: templates/js/app.js.ep:222
-msgid "Next hop: "
-msgstr ""
+#: templates/js/app.js.ep:218
+msgid "Next hop:"
+msgstr "Next hop:"
+
+#: templates/js/app.js.ep:228
+msgid "Please confirm the addition of the following network"
+msgstr "Please confirm the addition of the following network"
 
 #: templates/js/app.js.ep:232
-msgid "Please confirm the addition of the following network"
-msgstr ""
-
-#: templates/js/app.js.ep:236
 msgid "Please confirm the deletion of the following network"
-msgstr ""
+msgstr "Please confirm the deletion of the following network"
 
-#: templates/index.html.ep:134
+#: templates/index.html.ep:139
 msgid "Please, confirm your action"
-msgstr ""
+msgstr "Please, confirm your action"
 
-#: templates/index.html.ep:6
+#: templates/index.html.ep:5
 msgid "Reload Exabgp"
-msgstr ""
+msgstr "Reload Exabgp"
 
-#: templates/js/app.js.ep:298
+#: templates/js/app.js.ep:294
 msgid "Unable to fetch Exabgp status: PID file missing or not readable!"
-msgstr ""
+msgstr "Unable to fetch Exabgp status: PID file missing or not readable!"
 
 #. ($id)
-#: lib/Erco/Controller/API/Subnet.pm:115
-msgid "Unable to find or modify the network with id %1. Please contact the administrator."
-msgstr ""
+#: lib/Erco/Controller/API/Subnet.pm:114
+msgid ""
+"Unable to find or modify the network with id %1. Please contact the "
+"administrator."
+msgstr "Unable to find or modify the network with id %1. Please contact the administrator."
 
 #. ($id)
-#: lib/Erco/Controller/API/Subnet.pm:143
+#: lib/Erco/Controller/API/Subnet.pm:141
 msgid "Unable to found the network with id = %1"
-msgstr ""
+msgstr "Unable to found the network with id = %1"
 
-#: templates/js/app.js.ep:312
+#: templates/js/app.js.ep:308
 msgid "WARNING! Exabgp is NOT running!"
-msgstr ""
+msgstr "WARNING! Exabgp is NOT running!"
 
 #: lib/Erco/ExaConf.pm:126
-msgid "We tried to reload Exabgp but it failed (WebSocket handshake failed). Contact an administrator."
-msgstr ""
+msgid ""
+"We tried to reload Exabgp but it failed (WebSocket handshake failed). "
+"Contact an administrator."
+msgstr "We tried to reload Exabgp but it failed (WebSocket handshake failed). Contact an administrator."
 
 #: lib/Erco/Controller/API/Exabgp.pm:71
 msgid "WebSocket handshake failed!"
-msgstr ""
+msgstr "WebSocket handshake failed!"
 
-#: templates/js/app.js.ep:212
+#: templates/js/app.js.ep:208
 msgid "You must select communities!"
-msgstr ""
+msgstr "You must select communities!"
 
 #: lib/Erco/Controller/API/Exabgp.pm:96
 msgid "You tried to launch an unauthorized command. Contact an administrator."
-msgstr ""
+msgstr "You tried to launch an unauthorized command. Contact an administrator."

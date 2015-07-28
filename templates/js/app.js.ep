@@ -214,9 +214,9 @@ function showConfirmModal(action, e) {
             communities.push(value+' ('+com[value]+')');
         });
         var text = [
-            '<%= l('Network: ') %>'+e.cidr,
-            '<%= l('Next hop: ') %>'+e.next_hop+' ('+nex[e.next_hop]+')',
-            '<%= l('Communities: ') %>'+communities.join(', ')
+            '<%= l('Network:') %> '+e.cidr,
+            '<%= l('Next hop:') %> '+e.next_hop+' ('+nex[e.next_hop]+')',
+            '<%= l('Communities:') %> '+communities.join(', ')
         ];
         $('#confirm-text').empty();
         $('#confirm-text').append(document.createTextNode(text[0]));
