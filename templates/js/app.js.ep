@@ -139,6 +139,7 @@ function modNetwork() {
                 data.msg.communities.forEach(function(value) {
                     communities.push(value+' ('+com[value]+')');
                 });
+                $("#mod-"+id).attr('data-communities', data.msg.communities.join());
                 $("#com-"+id).html(communities.join('<br>'));
 
                 // Clear modification modal
@@ -188,7 +189,6 @@ function showModModal() {
     $('#mod-cidr').attr('data-id', id);
     $('#mod-cidr').val(cidr);
     $('#mod-next-hop').val(next);
-    console.log(com);
     com.forEach(function(value) {
         $('#mod-communities option[value="' + value + '"]').attr('selected', true);
     });
