@@ -4,7 +4,6 @@ use Mojo::Base 'Mojolicious';
 use Erco::ExaConf;
 use Unix::PID;
 
-$ENV{MOJO_PROXY} = 1;
 sub startup {
     my $self = shift;
 

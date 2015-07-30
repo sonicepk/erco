@@ -13,6 +13,8 @@
         # => if current_user is not the user that you sets here and is not root, there's chances that it will fail (see https://github.com/ldidry/lstu/issues/25)
         user   => 'www-data',
         group  => 'www-data',
+        # Are you using Erco behind a reverse proxy like Nginx? If no, set to 0, otherwise, let it to 1
+        proxy => 1,
         # DO NOT CHANGE THIS OR YOU WILL GET INCONSISTENCIES IN THE ROUTES
         # YOU HAVE BEEN WARNED!
         workers => 1,
