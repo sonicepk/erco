@@ -1,14 +1,16 @@
 [Unit]
 Description=Erco
-Requires=network.target
+Documentation=https://erco.xyz/doc/index.html
+Requires=network.target exabgp.service
 After=network.target
 
 [Service]
-Type=simple
+Type=forking
+User=www-data
 RemainAfterExit=yes
 WorkingDirectory=/opt/erco/
 PIDFile=/opt/erco/script/hypnotoad.pid
-ExecStart=/usr/local/bin/carton exec hypnotoad script/erco -f
+ExecStart=/usr/local/bin/carton exec hypnotoad script/erco
 ExecStop=/usr/local/bin/carton exec hypnotoad -s script/erco
 ExecReload=/usr/local/bin/carton exec hypnotoad script/erco
 
