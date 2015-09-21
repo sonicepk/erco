@@ -222,7 +222,7 @@ sub _parse {
                     if (defined($entry)) {
                         $entry->id($i++);
 
-                        $line      =~ s/^ *#//;
+                        $line      =~ s/^\s*#//;
                         my $struct = decode_json($line);
 
                         $date->epoch($struct->{created_at});
