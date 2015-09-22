@@ -9,8 +9,9 @@ sub startup {
 
     $self->plugin('Config' => {
         default => {
-            secret   => ['fdjsofjoihrei'],
-            commands => ['reload']
+            secret     => ['fdjsofjoihrei'],
+            commands   => ['reload'],
+            local_pref => 0
         }
     });
 

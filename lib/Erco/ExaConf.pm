@@ -75,7 +75,11 @@ sub write {
                                 sub {
                                     my ($f, $num) = @_;
                                     if (defined($f)) {
-                                        say $fh $prefix.sprintf('route %s next-hop %s community %s;', $e->cidr, $e->next_hop, $f);
+                                        if ($e->local_pref ne '') {
+                                            say $fh $prefix.sprintf('route %s next-hop %s local-preference %s community %s;', $e->cidr, $e->next_hop, $e->local_pref, $f);
+                                        } else {
+                                            say $fh $prefix.sprintf('route %s next-hop %s community %s;', $e->cidr, $e->next_hop, $f);
+                                        }
                                         my $msg = $prefix;
                                         if (defined($e->modified_at)) {
                                             $msg .= sprintf('#{"human_created_at":"%s", "human_modified_at":"%s", "created_at":%d, "modified_at":%d}', $e->human_created_at, $e->human_modified_at, $e->created_at, $e->modified_at);
@@ -96,7 +100,6 @@ sub write {
         }
         close $fh;
 
-        $c->app->debug('write');
         $c->reload_exabgp(sub {});
 
         return 1;
@@ -186,8 +189,9 @@ sub _parse {
 
             if ($work) {
                 # This is a real configuration line
-                if ($line =~ m/route\s+(\S+)\s+next-hop\s+(\S+)\s+community\s+(\S+);/) {
-                    my ($route, $next_hop, $community) = ($1, $2, $3);
+                if ($line =~ m/route\s+(\S+)\s+next-hop\s+(\S+)(?:\s+local-preference\s+(\S+))?\s+community\s+(\S+);/) {
+                    my ($route, $next_hop, $local_pref, $community) = ($1, $2, $3, $4);
+                    $local_pref = '' unless (defined($local_pref) && $c->app->config('local_pref'));
 
                     # Check if the community is known (exists in configuration file)
                     if (!defined($c->app->config('communities')->{$community})) {
@@ -213,6 +217,7 @@ sub _parse {
                             $entry = Erco::ExaConf::Entry->new(
                                 cidr        => new NetAddr::IP($route)->cidr(),
                                 next_hop    => $next_hop,
+                                local_pref  => $local_pref,
                                 communities => Mojo::Collection->new($community)
                             );
                             $get_info = 1;

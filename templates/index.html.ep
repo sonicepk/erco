@@ -50,6 +50,14 @@
             </select>
         </div>
     </div>
+% if (config('local_pref')) {
+    <div class="form-group">
+        <label for="add-local_pref" class="col-sm-3 control-label"><%= l('Local preference') %></label>
+        <div class="col-sm-9">
+            <input class="form-control" id="add-local_pref" type="text" name="local_pref" placeholder="<%= l('Local preference') %>" required="required">
+        </div>
+    </div>
+% }
     <div class="form-group">
         <label for="add-communities" class="col-sm-3 control-label"><%= l('Communities') %></label>
         <div class="col-sm-9">
@@ -73,6 +81,9 @@
             <th class="text-center">#</th>
             <th><%= l('Network') %></th>
             <th><%= l('Next hop') %></th>
+% if (config('local_pref')) {
+            <th><%= l('Local preference') %></th>
+% }
             <th><%= l('Communities') %></th>
             <th><%= l('Created at') %></th>
             <th><%= l('Modified at') %></th>
@@ -92,6 +103,7 @@
                 <h4 class="modal-title" id="modModalLabel"><%= l('Modify network') %></h4>
             </div>
             <div class="modal-body">
+                <div id="mod-alerts"></div>
                 <form class="form-horizontal">
                     <div class="form-group">
                         <label for="mod-cidr" class="col-sm-3 control-label"><%= l('IP or network in CIDR notation') %></label>
@@ -109,6 +121,14 @@
                             </select>
                         </div>
                     </div>
+% if (config('local_pref')) {
+                    <div class="form-group">
+                        <label for="mod-local_pref" class="col-sm-3 control-label"><%= l('Local preference') %></label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="mod-local_pref" type="text" name="local_pref" placeholder="<%= l('Local preference') %>" required="required">
+                        </div>
+                    </div>
+% }
                     <div class="form-group">
                         <label for="mod-communities" class="col-sm-3 control-label"><%= l('Communities') %></label>
                         <div class="col-sm-9">

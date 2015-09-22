@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the Erco package.
 # 
 # Translators:
+# Translators:
 # Luc Didry <luc@didry.org>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Erco\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-07-28 11:53+0000\n"
+"PO-Revision-Date: 2015-09-22 22:17+0000\n"
 "Last-Translator: Luc Didry <luc@didry.org>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/erco/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/fiat-tux/erco/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,30 +19,30 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. ($cidr)
-#: lib/Erco/Controller/API/Subnet.pm:47
+#: lib/Erco/Controller/API/Subnet.pm:54
 msgid "\"%1\" is already announced."
 msgstr "\"%1\" est déjà annoncée."
 
 #. ($cidr)
-#: lib/Erco/Controller/API/Subnet.pm:117 lib/Erco/Controller/API/Subnet.pm:66
+#: lib/Erco/Controller/API/Subnet.pm:133 lib/Erco/Controller/API/Subnet.pm:74
 msgid "\"%1\" is not a valid IP address or network."
 msgstr "\"%1\" n'est pas une adresse IP ou un réseau valide."
 
 #. ($com)
-#: lib/Erco/Controller/API/Subnet.pm:30 lib/Erco/Controller/API/Subnet.pm:93
+#: lib/Erco/Controller/API/Subnet.pm:104 lib/Erco/Controller/API/Subnet.pm:33
 msgid "\"%1\" is not a valid community (not declared in Erco configuration)."
 msgstr "\"%1\" n'est pas une communauté valide (non déclarée dans la configuration d'Erco)."
 
 #. ($next_hop)
-#: lib/Erco/Controller/API/Subnet.pm:104 lib/Erco/Controller/API/Subnet.pm:41
+#: lib/Erco/Controller/API/Subnet.pm:119 lib/Erco/Controller/API/Subnet.pm:48
 msgid "\"%1\" is not a valid next hop (not declared in Erco configuration)."
 msgstr "\"%1\" n'est pas un next hop valide (non déclaré dans la configuration d'Erco)."
 
-#: templates/index.html.ep:79
+#: templates/index.html.ep:90
 msgid "Actions"
 msgstr "Actions"
 
-#: templates/index.html.ep:64
+#: templates/index.html.ep:72
 msgid "Add"
 msgstr "Ajouter"
 
@@ -49,7 +50,7 @@ msgstr "Ajouter"
 msgid "Announce a new network or IP"
 msgstr "Annoncer un nouveau réseau ou une IP"
 
-#: templates/index.html.ep:69
+#: templates/index.html.ep:77
 msgid "Announced networks"
 msgstr "Sous-réseaux annoncés"
 
@@ -57,7 +58,7 @@ msgstr "Sous-réseaux annoncés"
 msgid "Buy the ebook (french only)"
 msgstr "Acheter l'ebook (français uniquement)"
 
-#: templates/index.html.ep:124 templates/index.html.ep:144
+#: templates/index.html.ep:144 templates/index.html.ep:164
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -65,20 +66,20 @@ msgstr "Annuler"
 msgid "Clear command output"
 msgstr "Nettoyer la sortie des commandes"
 
-#: templates/index.html.ep:103 templates/index.html.ep:113
-#: templates/index.html.ep:54 templates/index.html.ep:76
+#: templates/index.html.ep:115 templates/index.html.ep:133
+#: templates/index.html.ep:62 templates/index.html.ep:87
 msgid "Communities"
 msgstr "Communautés"
 
-#: templates/js/app.js.ep:219
+#: templates/js/app.js.ep:260
 msgid "Communities:"
 msgstr "Communautés :"
 
-#: templates/index.html.ep:143
+#: templates/index.html.ep:163
 msgid "Confirm"
 msgstr "Confirmer"
 
-#: templates/index.html.ep:77
+#: templates/index.html.ep:88
 msgid "Created at"
 msgstr "Créé le"
 
@@ -86,20 +87,20 @@ msgstr "Créé le"
 msgid "Exabgp has been reloaded but is not running."
 msgstr "Exabgp a été relancé mais ne fonctionne pas."
 
-#: lib/Erco/Controller/API/Exabgp.pm:44 lib/Erco/ExaConf.pm:136
+#: lib/Erco/Controller/API/Exabgp.pm:44 lib/Erco/ExaConf.pm:139
 msgid "Exabgp has been successfully reloaded."
 msgstr "Exabgp a été relancé avec succès."
 
-#: templates/js/app.js.ep:301
+#: templates/js/app.js.ep:346
 msgid "Exabgp is running"
 msgstr "Exabgp fonctionne"
 
-#: templates/index.html.ep:6 templates/js/app.js.ep:266
+#: templates/index.html.ep:6 templates/js/app.js.ep:311
 msgid "Getting Exabgp status"
 msgstr "Récupération de l'état d'Exabgp"
 
+#: templates/index.html.ep:109 templates/index.html.ep:111
 #: templates/index.html.ep:38 templates/index.html.ep:40
-#: templates/index.html.ep:97 templates/index.html.ep:99
 msgid "IP or network in CIDR notation"
 msgstr "Adresse IP ou réseau en notation CIDR"
 
@@ -107,51 +108,65 @@ msgstr "Adresse IP ou réseau en notation CIDR"
 msgid "Launch command"
 msgstr "Lancer la commande"
 
-#: templates/index.html.ep:78
+#: templates/index.html.ep:126 templates/index.html.ep:128
+#: templates/index.html.ep:55 templates/index.html.ep:57
+#: templates/index.html.ep:85
+msgid "Local preference"
+msgstr "Préférence locale"
+
+#: templates/js/app.js.ep:258
+msgid "Local preference:"
+msgstr "Préférence locale :"
+
+#: templates/index.html.ep:89
 msgid "Modified at"
 msgstr "Modifié le"
 
-#: templates/index.html.ep:123
+#: templates/index.html.ep:143
 msgid "Modify"
 msgstr "Modifier"
 
-#: templates/index.html.ep:92
+#: templates/index.html.ep:103
 msgid "Modify network"
 msgstr "Modifier le réseau"
 
-#: templates/index.html.ep:74
+#: templates/index.html.ep:82
 msgid "Network"
 msgstr "Réseau"
 
-#: templates/js/app.js.ep:210
+#: templates/js/app.js.ep:248
 msgid "Network can not be empty!"
 msgstr "Le réseau ne peut pas être vide !"
 
-#: lib/Erco/Controller/API/Subnet.pm:137
+#: lib/Erco/Controller/API/Subnet.pm:153
 msgid "Network successfully deleted."
 msgstr "Le réseau a été supprimé avec succès."
 
-#: templates/js/app.js.ep:217
+#: templates/js/app.js.ep:255
 msgid "Network:"
 msgstr "Réseau :"
 
-#: templates/index.html.ep:44 templates/index.html.ep:75
+#: templates/index.html.ep:44 templates/index.html.ep:83
 msgid "Next hop"
 msgstr "Next hop"
 
-#: templates/js/app.js.ep:218
+#: templates/js/app.js.ep:256
 msgid "Next hop:"
 msgstr "Next hop :"
 
-#: templates/js/app.js.ep:228
+#: lib/Erco/Controller/API/Subnet.pm:112 lib/Erco/Controller/API/Subnet.pm:41
+msgid "No community. Please choose at least one community."
+msgstr "Aucune communauté. Veuillez choisir au moins une communauté."
+
+#: templates/js/app.js.ep:273
 msgid "Please confirm the addition of the following network"
 msgstr "Veuillez confirmer l'ajout du réseau suivant"
 
-#: templates/js/app.js.ep:232
+#: templates/js/app.js.ep:277
 msgid "Please confirm the deletion of the following network"
 msgstr "Veuillez confirmer la suppression du réseau suivant"
 
-#: templates/index.html.ep:139
+#: templates/index.html.ep:159
 msgid "Please, confirm your action"
 msgstr "Veuillez confirmer votre action"
 
@@ -159,27 +174,27 @@ msgstr "Veuillez confirmer votre action"
 msgid "Reload Exabgp"
 msgstr "Relancer Exabgp"
 
-#: templates/js/app.js.ep:294
+#: templates/js/app.js.ep:339
 msgid "Unable to fetch Exabgp status: PID file missing or not readable!"
 msgstr "Impossible de récupérer le statut d'Exabgp : fichier de PID manquant ou non lisible !"
 
 #. ($id)
-#: lib/Erco/Controller/API/Subnet.pm:114
+#: lib/Erco/Controller/API/Subnet.pm:130
 msgid ""
 "Unable to find or modify the network with id %1. Please contact the "
 "administrator."
 msgstr "Impossible de retrouver ou de modifier le réseau possédant l'id %1. Veuillez contacter un administrateur."
 
 #. ($id)
-#: lib/Erco/Controller/API/Subnet.pm:141
+#: lib/Erco/Controller/API/Subnet.pm:157
 msgid "Unable to found the network with id = %1"
 msgstr "Impossible de retrouver le réseau possédant l'id %1"
 
-#: templates/js/app.js.ep:308
+#: templates/js/app.js.ep:353
 msgid "WARNING! Exabgp is NOT running!"
 msgstr "ATTENTION ! Exabgp ne fonctionne pas !"
 
-#: lib/Erco/ExaConf.pm:126
+#: lib/Erco/ExaConf.pm:129
 msgid ""
 "We tried to reload Exabgp but it failed (WebSocket handshake failed). "
 "Contact an administrator."
@@ -189,7 +204,7 @@ msgstr "Nous avons essayé de relancer Exabgp mais cela a échoué (échec de la
 msgid "WebSocket handshake failed!"
 msgstr "La négociation WebSocket a échoué !"
 
-#: templates/js/app.js.ep:208
+#: templates/js/app.js.ep:246
 msgid "You must select communities!"
 msgstr "Vous devez sélectionner une ou plusieurs communautés !"
 

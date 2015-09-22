@@ -7,7 +7,6 @@ var nex = <%== $nex %>;
 
 // Launch Exabgp command
 function exabgpCommand(action, cb) {
-    console.log(action);
     $.ajax({
         url: '<%= url_for('exabgp_command') %>',
         data: {
@@ -19,15 +18,20 @@ function exabgpCommand(action, cb) {
     });
 }
 // Display a bootstrap alert div
-function addAlert(message, c) {
+function addAlert(message, c, mod) {
     c  = (c !== undefined && c !== null) ? c : 'danger';
     var alert = [
         '<div class="alert alert-'+c+' alert-dismissible" role="alert">',
         '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
         '</div>'
     ];
-    $('#alerts').append(alert.join(''));
-    $('#alerts .alert').last().append(document.createTextNode(message));
+    if (mod !== undefined && mod) {
+        $('#mod-alerts').append(alert.join(''));
+        $('#mod-alerts .alert').last().append(document.createTextNode(message));
+    } else {
+        $('#alerts').append(alert.join(''));
+        $('#alerts .alert').last().append(document.createTextNode(message));
+    }
 }
 
 // Get networks list
@@ -53,11 +57,20 @@ function populateNetworkTable(e, index) {
              '<th scope="row" class="index">', (index + 1), '</th>',
              '<td class="cidr">', e.cidr, '</td>',
              '<td>', e.next_hop, ' (', nex[e.next_hop], ')', '</td>',
+% if (config('local_pref')) {
+             '<td class="local_pref">', e.local_pref, '</td>',
+% }
              '<td id="com-', e.id, '">', communities.join('<br>'), '</td>',
              '<td id="date-', (index + 1), '"></td>',
              '<td id="mod-date-', (index + 1), '"></td>',
              '<td class="text-center">',
-                 '<a href="#" id="mod-', e.id, '" data-id="', e.id, '" data-cidr="', e.cidr, '" data-next-hop="', e.next_hop, '" data-communities="', e.communities.join(','), '"><span class="glyphicon glyphicon-pencil"></span></a> ',
+% if (config('local_pref')) {
+                 '<a href="#" id="mod-', e.id, '" data-id="', e.id, '" data-cidr="', e.cidr, '" data-next-hop="', e.next_hop, '" data-local_pref="', e.local_pref, '" data-communities="', e.communities.join(','), '">',
+% } else {
+                 '<a href="#" id="mod-', e.id, '" data-id="', e.id, '" data-cidr="', e.cidr, '" data-next-hop="', e.next_hop, '" data-communities="', e.communities.join(','), '">',
+% }
+                    '<span class="glyphicon glyphicon-pencil"></span>',
+                 '</a> ',
                  '<a href="#" id="delete-', e.id,'"><span class="glyphicon glyphicon-remove"></span></a>',
              '</td>',
          '</tr>'
@@ -96,6 +109,9 @@ function addNetwork() {
         data: {
             cidr: $('#cidr').val(),
             next_hop: $('#add-next-hop').val(),
+% if (config('local_pref')) {
+            local_pref: $('#add-local_pref').val(),
+% }
             communities: $('#add-communities').val()
         },
         success: function(data) {
@@ -106,6 +122,7 @@ function addNetwork() {
             }
             $('#submit-confirm-btn').unbind('click');
             $('#cidr').val('');
+            $('#add-local_pref').val('');
             $('#add-communities option').attr('selected', false);
         },
         error: function() {
@@ -126,15 +143,20 @@ function modNetwork() {
             communities: $('#mod-communities').val(),
             next_hop: $('#mod-next-hop').val(),
             cidr: $('#mod-cidr').val(),
+% if (config('local_pref')) {
+            local_pref: $('#mod-local_pref').val(),
+% }
             id: id
         },
         success: function(data) {
             if (data.success) {
                 // Update table
                 $('#element-'+id+' > .cidr').text(data.msg.cidr);
+                $('#element-'+id+' > .local_pref').text(data.msg.local_pref);
                 var m = moment.unix(data.msg.modified_at).locale(window.navigator.language).format('LLLL');
                 $('#mod-date-'+id).toggleClass('text-center', false);
                 $('#mod-date-'+id).text(m);
+                $('#mod-'+id).attr('data-local_pref', data.msg.local_pref);
                 var communities = new Array();
                 data.msg.communities.forEach(function(value) {
                     communities.push(value+' ('+com[value]+')');
@@ -144,11 +166,15 @@ function modNetwork() {
 
                 // Clear modification modal
                 $('#modModal').modal('hide');
+                $('#mod-alerts').empty();
                 $('#mod-cidr').attr('data-id', '');
                 $('#mod-cidr').val('');
+% if (config('local_pref')) {
+                $('#mod-local_pref').val('');
+% }
                 $('#mod-communities option').attr('selected', false);
             } else {
-                addAlert(data.msg);
+                addAlert(data.msg, null, true);
             }
         }
     });
@@ -180,15 +206,23 @@ function deleteNetwork(id) {
 
 // Show form modal for network modification
 function showModModal() {
-    var c    = $(this);
-    var id   = c.attr('data-id');
-    var cidr = c.attr('data-cidr');
-    var next = c.attr('data-next-hop');
-    var com  = c.attr('data-communities').split(',');
+    $('#mod-alerts').empty();
+
+    var c          = $(this);
+    var id         = c.attr('data-id');
+    var cidr       = c.attr('data-cidr');
+    var next       = c.attr('data-next-hop');
+% if (config('local_pref')) {
+    var local_pref = c.attr('data-local_pref');
+% }
+    var com        = c.attr('data-communities').split(',');
 
     $('#mod-cidr').attr('data-id', id);
     $('#mod-cidr').val(cidr);
     $('#mod-next-hop').val(next);
+% if (config('local_pref')) {
+    $('#mod-local_pref').val(local_pref);
+% }
     com.forEach(function(value) {
         $('#mod-communities option[value="' + value + '"]').attr('selected', true);
     });
@@ -201,6 +235,9 @@ function showConfirmModal(action, e) {
         e = {
             cidr: $('#cidr').val(),
             next_hop: $('#add-next-hop').val(),
+% if (config('local_pref')) {
+            local_pref: $('#add-local_pref').val(),
+% }
             communities: $('#add-communities').val()
         };
     }
@@ -216,6 +253,9 @@ function showConfirmModal(action, e) {
         var text = [
             '<%= l('Network:') %> '+e.cidr,
             '<%= l('Next hop:') %> '+e.next_hop+' ('+nex[e.next_hop]+')',
+% if (config('local_pref')) {
+            '<%= l('Local preference:') %> '+e.local_pref,
+% }
             '<%= l('Communities:') %> '+communities.join(', ')
         ];
         $('#confirm-text').empty();
@@ -224,6 +264,10 @@ function showConfirmModal(action, e) {
         $('#confirm-text').append(document.createTextNode(text[1]));
         $('#confirm-text').append('<br>');
         $('#confirm-text').append(document.createTextNode(text[2]));
+% if (config('local_pref')) {
+        $('#confirm-text').append('<br>');
+        $('#confirm-text').append(document.createTextNode(text[3]));
+% }
         if (action === 'add') {
             $('#confirmModalLabel').html('<%= l('Please confirm the addition of the following network') %>');
             $('#submit-confirm-btn').unbind('click');
@@ -351,4 +395,3 @@ $('document').ready(function() {
     networksListLoad();
     getExabgpStatus();
 });
-

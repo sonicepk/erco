@@ -59,7 +59,7 @@ sub to_array {
     return \@data;
 }
 
-# Return the maximum id of the entrie (to be able to choose a new one)
+# Return the maximum id of the entries (to be able to choose a new one)
 sub max_id {
     my $c = shift;
 

@@ -51,6 +51,10 @@
         #'show routes',
     ],
 
+    # simple Perl boolean (use 1 for true and 0 for false) to allow to use local-preference in the announced route
+    # optional, default is 0
+    #local_pref => 0,
+
     # URL sub-directory in which you want Lstu to be accessible
     # example: you want to have Eco under https://example.org/eco/
     # => set url_sub_dir to '/eco' or to '/eco/', it doesn't matter

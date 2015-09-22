@@ -17,7 +17,7 @@ Please note that if you're not using Erco at the root of your web server, you'll
 + **next_hop** `string`  
   IP address of the next hop
 + **communities** `array[string]`  
-  Array of communities is announced with
+  Array of communities the subnet is announced with
 + **created_at** `number`  
   UNIX timestamp of the subnet's creation
 + **human_created_at** `string`  
@@ -26,6 +26,8 @@ Please note that if you're not using Erco at the root of your web server, you'll
   UNIX timestamp of the subnet's last modification
 + **human_modified_at** `string`  
   human readable representation of `modified_at`
++ **local_pref** `string`  
+  optional, local-preference of the subnet
 
 # /api/subnet
 
@@ -40,6 +42,7 @@ Get the list of the announced subnets.
                 "id":1,
                 "cidr":"203.0.113.0/24",
                 "next_hop":"192.0.2.42",
+                "local_pref":"42",
                 "communities":
                     [
                         "64496:42"
@@ -70,7 +73,7 @@ Announce a new subnet.
 
 + Request (application/x-www-form-urlencoded)
 
-        cidr=198.51.100.43/32&next_hop=192.0.2.42&communities[]=64496:42&communities[]=64511:1337
+        cidr=198.51.100.43/32&next_hop=192.0.2.42&local_pref=42&communities[]=64496:42&communities[]=64511:1337
 
 + Response 200 (application/json)
 
@@ -80,6 +83,7 @@ Announce a new subnet.
             "msg":{
                 "id":3,
                 "cidr":"198.51.100.43\/32"
+                "local_pref":"42",
                 "next_hop":"192.0.2.42",
                 "communities":
                     [

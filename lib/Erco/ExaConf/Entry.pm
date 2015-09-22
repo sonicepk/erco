@@ -11,6 +11,7 @@ has 'created_at';
 has 'human_created_at';
 has 'modified_at';
 has 'human_modified_at';
+has 'local_pref';
 
 # Return a non-object entry, with non-object communities
 sub to_hash {
@@ -20,6 +21,7 @@ sub to_hash {
         id                => $c->id,
         cidr              => $c->cidr,
         next_hop          => $c->next_hop,
+        local_pref        => $c->local_pref,
         communities       => $c->communities->to_array,
         created_at        => $c->created_at,
         human_created_at  => $c->human_created_at,

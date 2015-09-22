@@ -18,8 +18,11 @@ sub post {
     my $c           = shift;
     my $cidr        = $c->param('cidr');
     my $next_hop    = $c->param('next_hop');
+    my $local_pref  = $c->param('local_pref');
     my $communities = $c->every_param('communities[]');
     my $net         = new NetAddr::IP($cidr);
+
+    $local_pref = '' unless defined $local_pref;
 
     my ($success, $msg, $entry, $com_collection) = (0, undef, undef, Mojo::Collection->new());
 
@@ -33,6 +36,10 @@ sub post {
         } else {
             push @{$com_collection}, $com;
         }
+    }
+    unless (scalar(@{$communities})) {
+        $msg               = $c->l('No community. Please choose at least one community.');
+        $communities_check = 0;
     }
 
     if ($communities_check) {
@@ -55,6 +62,7 @@ sub post {
                     created_at       => $date->epoch,
                     human_created_at => $date->to_string,
                     next_hop         => $next_hop,
+                    local_pref       => $local_pref,
                     communities      => $com_collection
                 );
 
@@ -81,8 +89,11 @@ sub put {
     my $id          = $c->param('id');
     my $cidr        = $c->param('cidr');
     my $next_hop    = $c->param('next_hop');
+    my $local_pref  = $c->param('local_pref');
     my $communities = $c->every_param('communities[]');
     my $net         = new NetAddr::IP($cidr);
+
+    $local_pref = '' unless defined $local_pref;
 
     my ($success, $msg, $entry, $com_collection) = (0, undef, undef, Mojo::Collection->new());
 
@@ -97,6 +108,10 @@ sub put {
             push @{$com_collection}, $com;
         }
     }
+    unless (scalar(@{$communities})) {
+        $msg               = $c->l('No community. Please choose at least one community.');
+        $communities_check = 0;
+    }
 
     if ($communities_check) {
         # Check if the client is sending a good next hop
@@ -106,8 +121,8 @@ sub put {
             my $exaconf = $c->exaconf;
             my $entries = $exaconf->entries;
 
-            if ($entries->modify_entry({id => $id, cidr => $net->cidr, next_hop => $next_hop, communities => $com_collection})) {
-                $msg = $entries->find_entry_by_id($id)->to_hash();
+            if ($entries->modify_entry({id => $id, cidr => $net->cidr, next_hop => $next_hop, local_pref => $local_pref, communities => $com_collection})) {
+                $msg     = $entries->find_entry_by_id($id)->to_hash();
                 $success = 1;
                 $exaconf->write;
             } else {
