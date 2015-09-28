@@ -162,7 +162,11 @@ function modNetwork() {
                     communities.push(value+' ('+com[value]+')');
                 });
                 $("#mod-"+id).attr('data-communities', data.msg.communities.join());
+                $('#mod-'+id).attr('data-cidr', data.msg.cidr);
                 $("#com-"+id).html(communities.join('<br>'));
+
+                $('#delete-'+data.msg.id).unbind('click');
+                $('#delete-'+data.msg.id).click(function() {showConfirmModal('delete', data.msg);});
 
                 // Clear modification modal
                 $('#modModal').modal('hide');
