@@ -71,25 +71,21 @@ sub write {
                     sub {
                         my ($e, $num) = @_;
                         if (defined($e)) {
-                            $e->communities->each(
-                                sub {
-                                    my ($f, $num) = @_;
-                                    if (defined($f)) {
-                                        if ($e->local_pref ne '') {
-                                            say $fh $prefix.sprintf('route %s next-hop %s local-preference %s community %s;', $e->cidr, $e->next_hop, $e->local_pref, $f);
-                                        } else {
-                                            say $fh $prefix.sprintf('route %s next-hop %s community %s;', $e->cidr, $e->next_hop, $f);
-                                        }
-                                        my $msg = $prefix;
-                                        if (defined($e->modified_at)) {
-                                            $msg .= sprintf('#{"human_created_at":"%s", "human_modified_at":"%s", "created_at":%d, "modified_at":%d}', $e->human_created_at, $e->human_modified_at, $e->created_at, $e->modified_at);
-                                        } else {
-                                            $msg .= sprintf('#{"human_created_at":"%s", "created_at":%d}', $e->human_created_at, $e->created_at);
-                                        }
-                                        say $fh $msg;
-                                    }
-                                }
-                            );
+                            my $com = $e->communities->join(' ');
+                            $com    = '['.$com.']' if ($e->communities->size > 1);
+
+                            if ($e->local_pref ne '') {
+                                say $fh $prefix.sprintf('route %s next-hop %s local-preference %s community %s;', $e->cidr, $e->next_hop, $e->local_pref, $com);
+                            } else {
+                                say $fh $prefix.sprintf('route %s next-hop %s community %s;', $e->cidr, $e->next_hop, $com);
+                            }
+                            my $msg = $prefix;
+                            if (defined($e->modified_at)) {
+                                $msg .= sprintf('#{"human_created_at":"%s", "human_modified_at":"%s", "created_at":%d, "modified_at":%d}', $e->human_created_at, $e->human_modified_at, $e->created_at, $e->modified_at);
+                            } else {
+                                $msg .= sprintf('#{"human_created_at":"%s", "created_at":%d}', $e->human_created_at, $e->created_at);
+                            }
+                            say $fh $msg;
                         }
                     }
                 );
@@ -189,19 +185,32 @@ sub _parse {
 
             if ($work) {
                 # This is a real configuration line
-                if ($line =~ m/route\s+(\S+)\s+next-hop\s+(\S+)(?:\s+local-preference\s+(\S+))?\s+community\s+(\S+);/) {
+                if ($line =~ m/route\s+(\S+)\s+next-hop\s+(\S+)(?:\s+local-preference\s+(\S+))?\s+community\s+(.+);/) {
                     my ($route, $next_hop, $local_pref, $community) = ($1, $2, $3, $4);
                     $local_pref = '' unless (defined($local_pref) && $c->app->config('local_pref'));
 
+                    my $stop = 0;
                     # Check if the community is known (exists in configuration file)
-                    if (!defined($c->app->config('communities')->{$community})) {
-                        carp 'Unknown community: '.$community;
-                    } elsif (!defined($c->app->config('next_hops')->{$next_hop})) { # Check if the next hop is known (exists in configuration file)
-                        carp 'Unknown next hop: '.$next_hop;
+                    my @communities;
+                    if ($community =~ m/\[([^\]]+)\]/) {
+                        @communities = split(' ', $1);
                     } else {
+                        push @communities, $community;
+                    }
+                    for $community (@communities) {
+                        if (!defined($c->app->config('communities')->{$community})) {
+                            $stop = 1;
+                            carp 'Unknown community: '.$community;
+                        }
+                    }
+                    if (!defined($c->app->config('next_hops')->{$next_hop})) { # Check if the next hop is known (exists in configuration file)
+                        $stop = 1;
+                        carp 'Unknown next hop: '.$next_hop;
+                    }
+                    unless ($stop) {
                         # Does the entry already exists?
                         if (my $e = $entries->find_entry_by_cidr(new NetAddr::IP($route)->cidr)) {
-                            push @{$e->communities}, $community;
+                            push @{$e->communities}, @communities;
                             $duplicate = 1;
                         } else {
                             if ($get_info) {
@@ -218,7 +227,7 @@ sub _parse {
                                 cidr        => new NetAddr::IP($route)->cidr(),
                                 next_hop    => $next_hop,
                                 local_pref  => $local_pref,
-                                communities => Mojo::Collection->new($community)
+                                communities => Mojo::Collection->new(@communities)
                             );
                             $get_info = 1;
                         }
